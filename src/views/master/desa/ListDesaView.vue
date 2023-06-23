@@ -1,0 +1,160 @@
+<template>
+  <div>
+    <app-nav-bar />
+    <app-side-bar />
+    <div class="content-wrapper">
+      <router-view />
+      <div class="container pt-3">
+        <div class="row">
+          <div class="col">
+            <router-link class="btn btn-primary" to="/master/desa/tambah">
+              <i class="fas fa-solid fa-plus-circle"></i>
+              Tambah Data Desa
+            </router-link>
+          </div>
+        </div>
+        <div class="row mt-3 mb-4">
+          <div class="col">
+            <div class="card card-outline card-primary">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-table"></i>
+                  Data Desa
+                </h3>
+              </div>
+              <div class="card-body pad table-responsive">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col" style="width: 5%">No</th>
+                        <th scope="col">Nama Desa</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="item in items" :key="item.id">
+                        <td>{{ item.no }}</td>
+                        <td>{{ item.nama_desa }}</td>
+                        <td class="tombol">
+                          <router-link
+                            class="btn btn-sm btn-warning"
+                            :to="{
+                              name: 'edit-desa',
+                              params: { id: item.id },
+                            }"
+                          >
+                            <i class="fas fa-solid fa-pen"></i>
+                          </router-link>
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-danger"
+                            @click.prevent="deleteDesa(item.id)"
+                          >
+                            <i class="fas fa-trash" style="color: white"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer />
+    <control-side-bar />
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+// import authHeader from "@/views/auth/auth_header";
+export default {
+  name: "ListDesaView",
+  data() {
+    return {
+      items: [],
+    };
+  },
+
+  mounted() {
+    // console.log('mounted');
+    // let user = localStorage.getItem('token')
+    // console.log(user);
+    // this.token = user
+    // if (user) {
+    //   this.$router.push("/dashboard")
+    // }
+  },
+
+  created() {
+    this.getDesa();
+  },
+
+  methods: {
+    async getDesa() {
+      let t = localStorage.getItem('token')
+      // console.log(t);
+      try {
+        const data_desa = await axios.get(
+          "http://localhost:3001/desa/list", {
+            headers: {
+              token: t
+            }
+          }
+        );
+        let dd = data_desa.data.data;
+        for (let i = 0; i < dd.length; i++) {
+          dd[i].no = i+1
+        }
+        this.items = dd
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async deleteDesa(id) {
+      try {
+        const data_desa = await axios.get(
+          `http://localhost:3001/desa/detailsById/${id}`
+        );
+        this.$swal({
+          title: "Peringatan !",
+          text: "Apakah anda yakin akan menghapus data desa " + data_desa.data.data[0].nama_desa + "?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ya, hapus!",
+        }).then(async (hasil) => {
+          if (hasil.isConfirmed == true) {
+            await axios.post("http://localhost:3001/desa/delete", { id });
+            this.$swal({
+              icon: "success",
+              title: "Sukses",
+              text: "Data desa berhasil dihapus",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+          this.getDesa();
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+};
+</script>
+
+<style>
+.tombol {
+  text-align: center;
+}
+.btn-sm {
+  margin: 2px;
+}
+</style>

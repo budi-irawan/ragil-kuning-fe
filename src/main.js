@@ -4,6 +4,12 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import VueSweetalert2 from 'vue-sweetalert2'
+import iziToast from 'izitoast'
+import VueIziToast from 'vue-izitoast';
+import moment from 'moment'
+import Vuelidate from 'vuelidate'
+import datePicker from 'vue-bootstrap-datetimepicker';
+import jQuery from 'jquery';
 import AppNavBar from './components/partials/AppNavBar'
 import AppSideBar from './components/partials/AppSideBar'
 import AppFooter from './components/partials/AppFooter'
@@ -17,6 +23,8 @@ import 'admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js'
 import 'admin-lte/dist/js/adminlte.min.js?v=3.2.0'
 import './style.scss'
 import 'sweetalert2/dist/sweetalert2.min.css'
+import 'izitoast/dist/css/iziToast.css';
+import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -30,6 +38,9 @@ Vue.component('AppSideBar', AppSideBar)
 Vue.component('AppFooter', AppFooter)
 Vue.component('ControlSideBar', ControlSideBar)
 Vue.use(VueSweetalert2)
+Vue.use(Vuelidate)
+Vue.use(VueIziToast);
+Vue.use(datePicker);
 
 var eventBus = new Vue();
 Vue.prototype.$eventBus = eventBus
@@ -37,6 +48,24 @@ Vue.prototype.$eventBus = eventBus
 Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false
+
+Vue.prototype.$axios = axios
+Vue.prototype.$VueIziToast = iziToast
+Vue.prototype.moment = moment
+moment.locale('id');
+window.$ = window.jQuery = require('jquery');
+jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
+  icons: {
+    time: 'far fa-clock',
+    date: 'far fa-calendar',
+    up: 'fas fa-arrow-up',
+    down: 'fas fa-arrow-down',
+    previous: 'fas fa-chevron-left',
+    next: 'fas fa-chevron-right',
+    clear: faTrashCan,
+    close: faCircleXmark
+  }
+});
 
 new Vue({
   router,
