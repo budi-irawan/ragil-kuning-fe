@@ -15,8 +15,11 @@
     "admin-lte": "^3.2.0",
     "axios": "^1.4.0",
     "core-js": "^3.8.3",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.7.12",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
+    "vue-sweetalert2": "^5.0.5",
     "vuex": "^3.6.2"
   },
   "devDependencies": {

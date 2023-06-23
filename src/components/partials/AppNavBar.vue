@@ -79,7 +79,7 @@ export default {
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
             localStorage.clear();
-            this.$router.push("/login");
+            this.$router.push("/");
           }
         });
       } catch (error) {
