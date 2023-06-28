@@ -104,6 +104,11 @@
                           </router-link>
                         </td>
                       </tr>
+                      <tr>
+                        <td colspan="5"><b>Total</b></td>
+                        <td><b>{{ formatRupiah(total_tagihan) }}</b></td>
+                        <td><b>{{ formatRupiah(total_terbayar) }}</b></td>
+                      </tr>
                       <tr v-if="list_pembayaran.length==0">
                         <td colspan="10">Belum ada pembayaran</td>
                       </tr>
@@ -144,6 +149,9 @@ export default {
 
       item_desa: [],
       item_dusun: [],
+
+      total_tagihan: 0,
+      total_terbayar: 0,
 
       loadingImage: require('../../../public/rolling.gif')
     };
@@ -215,6 +223,8 @@ export default {
         let dp = data_pembayaran.data.data;
         for (let i = 0; i < dp.length; i++) {
           dp[i].no = i + 1;
+          this.total_tagihan += dp[i].jumlah_tagihan
+          this.total_terbayar += dp[i].jumlah_terbayar
         }
         return dp
       } catch (error) {
