@@ -133,7 +133,7 @@ export default {
     async getBulan() {
       try {
         const data_bulan = await axios.get(
-          "http://192.168.0.64:3001/bulan/list"
+          "http://localhost:3001/bulan/list"
         );
         let db = data_bulan.data.data;
         for (let i = 0; i < db.length; i++) {
@@ -149,7 +149,7 @@ export default {
       try {
         let bulan_id = this.bulan_baru.bulan_id
         const data_bulan = await axios.get(
-          "http://192.168.0.64:3001/bulan/detailsById/"+bulan_id
+          "http://localhost:3001/bulan/detailsById/"+bulan_id
         );
         let db = data_bulan.data.data[0];
         this.bulan_baru.nama_tahun = db.nama_tahun
@@ -163,7 +163,7 @@ export default {
     async getPemakaian() {
       try {
         const data_pemakaian = await axios.get(
-          "http://192.168.0.64:3001/pemakaian/list"
+          "http://localhost:3001/pemakaian/list"
         );
 
         let db = data_pemakaian.data.data;
@@ -178,7 +178,7 @@ export default {
 
     async getDesa() {
       try {
-        const data_desa = await axios.get("http://192.168.0.64:3001/desa/list");
+        const data_desa = await axios.get("http://localhost:3001/desa/list");
         this.item_desa = data_desa.data.data;
       } catch (error) {
         console.log(error);
@@ -188,7 +188,7 @@ export default {
     async getDusunByDesaId() {
       try {
         const data_dusun = await axios.post(
-          `http://192.168.0.64:3001/dusun/listDusunByDesaId`,
+          `http://localhost:3001/dusun/listDusunByDesaId`,
           { desa_id: this.formulir_baru.desa_id }
         );
         this.item_dusun = data_dusun.data.data;
@@ -200,7 +200,7 @@ export default {
     async cetakFormulir() {
       try {
         window.open(
-          `http://192.168.0.64:3001/pemakaian/cetakFormulirPencatatan?bulan_id=${this.formulir_baru.bulan_id}&&desa_id=${this.formulir_baru.desa_id}`
+          `http://localhost:3001/pemakaian/cetakFormulirPencatatan?bulan_id=${this.formulir_baru.bulan_id}&&desa_id=${this.formulir_baru.desa_id}`
         );
         this.formulir_baru.bulan_id = ""
         this.formulir_baru.tahun_id = ""

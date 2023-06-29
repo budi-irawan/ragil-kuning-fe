@@ -394,7 +394,7 @@
         let t = localStorage.getItem("token");
         try {
           const data_user = await this.$axios.get(
-            "http://192.168.0.64:3001/user/profil",
+            "http://localhost:3001/user/profil",
             {
               headers: {
                 token: t,
@@ -412,7 +412,7 @@
       async getPemakaian() {
         try {
           const data_pemakaian = await axios.get(
-            "http://192.168.0.64:3001/pemakaian/list"
+            "http://localhost:3001/pemakaian/list"
           );
   
           let db = data_pemakaian.data.data;
@@ -427,7 +427,7 @@
   
       async cetakSuratPeringatan(pelanggan_id) {
         try {
-          window.open("http://192.168.0.64:3001/pembayaran/cetakSuratPeringatan/" + pelanggan_id)
+          window.open("http://localhost:3001/pembayaran/cetakSuratPeringatan/" + pelanggan_id)
         } catch (error) {
           console.log(error);
         }

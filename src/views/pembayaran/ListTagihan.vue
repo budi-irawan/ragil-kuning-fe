@@ -196,7 +196,7 @@ export default {
 
     async getDesa() {
       try {
-        const data_desa = await axios.get("http://192.168.0.64:3001/desa/list");
+        const data_desa = await axios.get("http://localhost:3001/desa/list");
         this.item_desa = data_desa.data.data;
       } catch (error) {
         console.log(error);
@@ -206,7 +206,7 @@ export default {
     async getDusunByDesaId() {
       try {
         const data_dusun = await axios.post(
-          `http://192.168.0.64:3001/dusun/listDusunByDesaId`,
+          `http://localhost:3001/dusun/listDusunByDesaId`,
           { desa_id: this.desa_id }
         );
         this.item_dusun = data_dusun.data.data;
@@ -218,7 +218,7 @@ export default {
     async getPembayaran() {
       try {
         const data_pembayaran = await axios.get(
-          "http://192.168.0.64:3001/pembayaran/list"
+          "http://localhost:3001/pembayaran/list"
         );
         let dp = data_pembayaran.data.data;
         for (let i = 0; i < dp.length; i++) {

@@ -133,7 +133,7 @@ export default {
       // console.log(t);
       try {
         const data_tahun = await axios.get(
-          "http://192.168.0.64:3001/tahun/list", {
+          "http://localhost:3001/tahun/list", {
             headers: {
               token: t
             }
@@ -152,7 +152,7 @@ export default {
     async deleteTahun(id) {
       try {
         const data_tahun = await axios.get(
-          `http://192.168.0.64:3001/tahun/detailsById/${id}`
+          `http://localhost:3001/tahun/detailsById/${id}`
         );
         this.$swal({
           title: "Peringatan !",
@@ -164,7 +164,7 @@ export default {
           confirmButtonText: "Ya, hapus!",
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
-            await axios.post("http://192.168.0.64:3001/tahun/delete", { id });
+            await axios.post("http://localhost:3001/tahun/delete", { id });
             this.$swal({
               icon: "success",
               title: "Sukses",
@@ -183,11 +183,11 @@ export default {
     async aktifkanTahun(id) {
       try {
         const tahun = await axios.get(
-          "http://192.168.0.64:3001/tahun/detailsById/" + id
+          "http://localhost:3001/tahun/detailsById/" + id
         );
 
         let cek = await axios.post(
-          "http://192.168.0.64:3001/tahun/aktifkantahun",
+          "http://localhost:3001/tahun/aktifkantahun",
           tahun.data.data[0]
         );
         if (cek.data.status == 204) {
@@ -215,7 +215,7 @@ export default {
     async nonAktifkanTahun(id) {
       try {
         const tahun = await axios.get(
-          "http://192.168.0.64:3001/tahun/detailsById/" + id
+          "http://localhost:3001/tahun/detailsById/" + id
         );
 
         this.$swal({
@@ -232,7 +232,7 @@ export default {
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
             await axios.post(
-              "http://192.168.0.64:3001/tahun/nonAktifkanTahun",
+              "http://localhost:3001/tahun/nonAktifkanTahun",
               tahun.data.data[0]
             );
             this.$swal({

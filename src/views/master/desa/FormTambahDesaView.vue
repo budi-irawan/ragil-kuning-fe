@@ -87,7 +87,7 @@ export default {
         this.$v.$touch();
         if (this.$v.$pendding || this.$v.$error) return;
 
-        await axios.post("http://192.168.0.64:3001/desa/create", {
+        await axios.post("http://localhost:3001/desa/create", {
           nama_desa: this.nama_desa,
         });
         this.nama_desa = "";

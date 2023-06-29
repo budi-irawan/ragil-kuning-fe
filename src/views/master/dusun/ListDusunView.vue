@@ -101,7 +101,7 @@ export default {
     async getDusun() {
       try {
         const data_dusun = await axios.get(
-          "http://192.168.0.64:3001/dusun/list"
+          "http://localhost:3001/dusun/list"
         );
         let dd = data_dusun.data.data;
         for (let i = 0; i < dd.length; i++) {
@@ -116,7 +116,7 @@ export default {
     async deleteDusun(id) {
       try {
         const data_dusun = await axios.get(
-          `http://192.168.0.64:3001/dusun/detailsById/${id}`
+          `http://localhost:3001/dusun/detailsById/${id}`
         );
         this.$swal({
           title: "Peringatan !",
@@ -128,7 +128,7 @@ export default {
           confirmButtonText: "Ya, hapus!",
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
-            await axios.post("http://192.168.0.64:3001/dusun/delete", { id });
+            await axios.post("http://localhost:3001/dusun/delete", { id });
             this.$swal({
               icon: "success",
               title: "Sukses",

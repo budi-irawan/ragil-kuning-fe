@@ -35,7 +35,7 @@
                             </div>
                             <div class="col-sm-6">
                               <img
-                                :src="`http://192.168.0.64:3001/uploads/${items[0].foto}`"
+                                :src="`http://localhost:3001/uploads/${items[0].foto}`"
                                 width="100%"
                               />
                             </div>
@@ -102,7 +102,7 @@ export default {
     async getPelangganById() {
       try {
         const data_pelanggan = await axios.get(
-          `http://192.168.0.64:3001/pelanggan/detailsById/${this.$route.params.id}`
+          `http://localhost:3001/pelanggan/detailsById/${this.$route.params.id}`
         );
         this.items = data_pelanggan.data.data;
       } catch (error) {
@@ -122,7 +122,7 @@ export default {
           confirmButtonText: "Ya, hapus!",
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
-            await axios.post("http://192.168.0.64:3001/pelanggan/delete", { id });
+            await axios.post("http://localhost:3001/pelanggan/delete", { id });
             this.$swal({
               icon: "success",
               title: "Sukses",

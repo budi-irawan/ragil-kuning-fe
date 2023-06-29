@@ -281,7 +281,7 @@ export default {
     async getDesa() {
       try {
         const data_desa = await axios.get(
-          "http://192.168.0.64:3001/desa/list"
+          "http://localhost:3001/desa/list"
         );
         this.item_desa = data_desa.data.data;
       } catch (error) {
@@ -292,7 +292,7 @@ export default {
     async getDusunByDesaId() {
       try {
         const data_dusun = await axios.post(
-          `http://192.168.0.64:3001/dusun/listDusunByDesaId`,{desa_id: this.pelanggan_baru.desa_id}
+          `http://localhost:3001/dusun/listDusunByDesaId`,{desa_id: this.pelanggan_baru.desa_id}
         );
         this.item_dusun = data_dusun.data.data;
       } catch (error) {
@@ -303,7 +303,7 @@ export default {
     async getGolonganTarif() {
       try {
         const data_golongan_tarif = await axios.get(
-          "http://192.168.0.64:3001/golongan_tarif/list"
+          "http://localhost:3001/golongan_tarif/list"
         );
         this.item_golongan_tarif = data_golongan_tarif.data.data;
       } catch (error) {
@@ -317,7 +317,7 @@ export default {
         if (this.$v.$pendding || this.$v.$error) return;
 
         await axios.post(
-          "http://192.168.0.64:3001/pelanggan/create",
+          "http://localhost:3001/pelanggan/create",
           this.pelanggan_baru
         );
 

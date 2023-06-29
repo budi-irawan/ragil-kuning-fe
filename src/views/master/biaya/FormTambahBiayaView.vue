@@ -128,7 +128,7 @@ export default {
         this.$v.$touch();
         if (this.$v.$pendding || this.$v.$error) return;
 
-        await axios.post("http://192.168.0.64:3001/biaya/create", this.biaya_baru);
+        await axios.post("http://localhost:3001/biaya/create", this.biaya_baru);
 
         this.$swal({
           icon: "success",

@@ -100,7 +100,7 @@ export default {
       // console.log(t);
       try {
         const data_desa = await axios.get(
-          "http://192.168.0.64:3001/desa/list", {
+          "http://localhost:3001/desa/list", {
             headers: {
               token: t
             }
@@ -119,7 +119,7 @@ export default {
     async deleteDesa(id) {
       try {
         const data_desa = await axios.get(
-          `http://192.168.0.64:3001/desa/detailsById/${id}`
+          `http://localhost:3001/desa/detailsById/${id}`
         );
         this.$swal({
           title: "Peringatan !",
@@ -131,7 +131,7 @@ export default {
           confirmButtonText: "Ya, hapus!",
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
-            await axios.post("http://192.168.0.64:3001/desa/delete", { id });
+            await axios.post("http://localhost:3001/desa/delete", { id });
             this.$swal({
               icon: "success",
               title: "Sukses",

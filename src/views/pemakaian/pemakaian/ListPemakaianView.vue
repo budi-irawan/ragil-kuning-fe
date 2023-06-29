@@ -218,7 +218,7 @@ export default {
   methods: {
     async getDesa() {
       try {
-        const data_desa = await axios.get("http://192.168.0.64:3001/desa/list");
+        const data_desa = await axios.get("http://localhost:3001/desa/list");
         this.item_desa = data_desa.data.data;
       } catch (error) {
         console.log(error);
@@ -228,7 +228,7 @@ export default {
     async getDusunByDesaId() {
       try {
         const data_dusun = await axios.post(
-          `http://192.168.0.64:3001/dusun/listDusunByDesaId`,
+          `http://localhost:3001/dusun/listDusunByDesaId`,
           { desa_id: this.desa_id }
         );
         this.item_dusun = data_dusun.data.data;
@@ -240,7 +240,7 @@ export default {
     async getPemakaian() {
       try {
         const data_pemakaian = await axios.get(
-          "http://192.168.0.64:3001/pemakaian/list"
+          "http://localhost:3001/pemakaian/list"
         );
 
         let db = data_pemakaian.data.data;
@@ -255,7 +255,7 @@ export default {
 
     async cetakSuratPeringatan(pelanggan_id) {
       try {
-        window.open("http://192.168.0.64:3001/pembayaran/cetakSuratPeringatan/" + pelanggan_id)
+        window.open("http://localhost:3001/pembayaran/cetakSuratPeringatan/" + pelanggan_id)
       } catch (error) {
         console.log(error);
       }
