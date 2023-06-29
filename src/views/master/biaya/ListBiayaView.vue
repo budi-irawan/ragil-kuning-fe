@@ -94,7 +94,7 @@ export default {
 
     async getBiaya() {
       try {
-        const data_biaya = await axios.get("http://localhost:3001/biaya/list");
+        const data_biaya = await axios.get("http://192.168.0.64:3001/biaya/list");
         let db = data_biaya.data.data;
         for (let i = 0; i < db.length; i++) {
           db[i].no = i+1
@@ -115,7 +115,7 @@ export default {
     async deleteBiaya(id) {
       try {
         const data_biaya = await axios.get(
-          `http://localhost:3001/biaya/detailsById/${id}`
+          `http://192.168.0.64:3001/biaya/detailsById/${id}`
         );
         this.$swal({
           title: "Peringatan !",
@@ -130,7 +130,7 @@ export default {
           confirmButtonText: "Ya, hapus!",
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
-            await axios.post("http://localhost:3001/biaya/delete", { id });
+            await axios.post("http://192.168.0.64:3001/biaya/delete", { id });
             this.$swal({
               icon: "success",
               title: "Sukses",

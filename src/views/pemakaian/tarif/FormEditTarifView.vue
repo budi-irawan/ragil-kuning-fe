@@ -105,7 +105,7 @@ export default {
         this.$v.$touch();
         if (this.$v.$pendding || this.$v.$error) return;
 
-        await axios.post("http://localhost:3001/tarif/update", this.tarif_baru);
+        await axios.post("http://192.168.0.64:3001/tarif/update", this.tarif_baru);
 
         this.$swal({
           icon: "success",
@@ -123,7 +123,7 @@ export default {
     async getTarifById(id) {
       try {
         const tarif = await axios.get(
-          "http://localhost:3001/tarif/detailsById/" + this.$route.params.id
+          "http://192.168.0.64:3001/tarif/detailsById/" + this.$route.params.id
         );
 
         this.tarif_baru = tarif.data.data[0];

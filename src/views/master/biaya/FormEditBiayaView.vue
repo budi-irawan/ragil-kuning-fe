@@ -150,7 +150,7 @@ export default {
 
     async getBiayaById() {
       try {
-        const data_biaya = await axios.get("http://localhost:3001/biaya/detailsById/"+ this.$route.params.id);
+        const data_biaya = await axios.get("http://192.168.0.64:3001/biaya/detailsById/"+ this.$route.params.id);
        
         this.pilih_biaya = data_biaya.data.data[0];
       } catch (error) {
@@ -163,7 +163,7 @@ export default {
         this.$v.$touch();
         if (this.$v.$pendding || this.$v.$error) return;
 
-        await axios.post("http://localhost:3001/biaya/update", this.pilih_biaya);
+        await axios.post("http://192.168.0.64:3001/biaya/update", this.pilih_biaya);
 
         this.$swal({
           icon: "success",

@@ -227,7 +227,7 @@ export default {
         if (this.$v.$pendding || this.$v.$error) return;
 
         await axios.post(
-          "http://localhost:3001/golongan_tarif/create",
+          "http://192.168.0.64:3001/golongan_tarif/create",
           this.golongan_tarif_baru
         );
 

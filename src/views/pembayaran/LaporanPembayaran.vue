@@ -103,7 +103,7 @@ export default {
       let token_user = localStorage.getItem("token");
       try {
         const data_user = await this.$axios.get(
-          "http://localhost:3001/user/profil",
+          "http://192.168.0.64:3001/user/profil",
           { headers: { token: token_user } }
         );
         let dd = data_user.data.data;
@@ -116,7 +116,7 @@ export default {
     async getLaporanPembayaranPerHari() {
       try {
         const data_laporan = await axios.get(
-          "http://localhost:3001/pembayaran/laporanPembayaranPerHari"
+          "http://192.168.0.64:3001/pembayaran/laporanPembayaranPerHari"
         );
 
         let db = data_laporan.data.data;
@@ -132,7 +132,7 @@ export default {
     async cetakSettlementReport(tanggal_bayar) {
       try {
         let tanggal = tanggal_bayar;
-        let hasil = await axios.post("http://localhost:3001/pembayaran/cetakLaporanPembayaranPerTanggal", { tanggal });
+        let hasil = await axios.post("http://192.168.0.64:3001/pembayaran/cetakLaporanPembayaranPerTanggal", { tanggal });
         let dataLaporan = hasil.data.data;
         console.log(dataLaporan);
 
@@ -160,7 +160,7 @@ export default {
         });
 
         this.getLaporanPembayaranPerHari();
-        const kirim_struk = await axios.post("http://localhost:4000/cetak-struk-settlement",{ struk_settlement });
+        const kirim_struk = await axios.post("http://192.168.0.64:4000/cetak-struk-settlement",{ struk_settlement });
       } catch (error) {
         console.log(error);
       }

@@ -111,7 +111,7 @@ export default {
   methods: {
     async getUser() {
       try {
-        const data_user = await axios.get("http://localhost:3001/user/list", {
+        const data_user = await axios.get("http://192.168.0.64:3001/user/list", {
           headers: {
             token: localStorage.getItem("token"),
           },
@@ -129,7 +129,7 @@ export default {
     async deleteDusun(id) {
       try {
         const data_user = await axios.get(
-          `http://localhost:3001/user/detailsById/${id}`
+          `http://192.168.0.64:3001/user/detailsById/${id}`
         );
         this.$swal({
           title: "Peringatan !",
@@ -144,7 +144,7 @@ export default {
           confirmButtonText: "Ya, hapus!",
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
-            await axios.post("http://localhost:3001/user/delete", { id });
+            await axios.post("http://192.168.0.64:3001/user/delete", { id });
             this.$swal({
               icon: "success",
               title: "Sukses",

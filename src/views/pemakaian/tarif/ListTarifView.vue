@@ -129,7 +129,7 @@ export default {
   methods: {
     async getTarif() {
       try {
-        const data_tarif = await axios.get("http://localhost:3001/tarif/list");
+        const data_tarif = await axios.get("http://192.168.0.64:3001/tarif/list");
 
         let db = data_tarif.data.data;
         for (let i = 0; i < db.length; i++) {
@@ -144,7 +144,7 @@ export default {
     async deleteTarif(id) {
       try {
         const data_biaya = await axios.get(
-          `http://localhost:3001/tarif/detailsById/${id}`
+          `http://192.168.0.64:3001/tarif/detailsById/${id}`
         );
         if (data_biaya.data.data[0].status_tarif == 1) {
           this.$swal({
@@ -167,7 +167,7 @@ export default {
             confirmButtonText: "Ya, hapus!",
           }).then(async (hasil) => {
             if (hasil.isConfirmed == true) {
-              await axios.post("http://localhost:3001/tarif/delete", { id });
+              await axios.post("http://192.168.0.64:3001/tarif/delete", { id });
               this.$swal({
                 icon: "success",
                 title: "Sukses",
@@ -187,7 +187,7 @@ export default {
     async getTarifById(id) {
       try {
         const tarif = await axios.get(
-          "http://localhost:3001/tarif/detailsById/" + id
+          "http://192.168.0.64:3001/tarif/detailsById/" + id
         );
 
         this.pilih_tarif = tarif.data.data[0];
@@ -199,11 +199,11 @@ export default {
     async aktifkanTarif(id) {
       try {
         const tarif = await axios.get(
-          "http://localhost:3001/tarif/detailsById/" + id
+          "http://192.168.0.64:3001/tarif/detailsById/" + id
         );
 
         let cek = await axios.post(
-          "http://localhost:3001/tarif/aktifkanTarif",
+          "http://192.168.0.64:3001/tarif/aktifkanTarif",
           tarif.data.data[0]
         );
         if (cek.data.status == 204) {
@@ -231,7 +231,7 @@ export default {
     async nonAktifkanTarif(id) {
       try {
         const tarif = await axios.get(
-          "http://localhost:3001/tarif/detailsById/" + id
+          "http://192.168.0.64:3001/tarif/detailsById/" + id
         );
 
         this.$swal({
@@ -248,7 +248,7 @@ export default {
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
             await axios.post(
-              "http://localhost:3001/tarif/nonAktifkanTarif",
+              "http://192.168.0.64:3001/tarif/nonAktifkanTarif",
               tarif.data.data[0]
             );
             this.$swal({

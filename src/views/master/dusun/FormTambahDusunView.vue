@@ -162,7 +162,7 @@ export default {
     async getDesa() {
       try {
         const data_desa = await axios.get(
-          "http://localhost:3001/desa/list"
+          "http://192.168.0.64:3001/desa/list"
         );
         // console.log(data_desa);
         let dd = data_desa.data.data;
@@ -177,7 +177,7 @@ export default {
         this.$v.$touch();
         if (this.$v.$pendding || this.$v.$error) return;
 
-        await axios.post("http://localhost:3001/dusun/create", this.item_dusun);
+        await axios.post("http://192.168.0.64:3001/dusun/create", this.item_dusun);
         this.item_dusun.nama_dusun = ""
         this.item_dusun.desa_id = ""
 

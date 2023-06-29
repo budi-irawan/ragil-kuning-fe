@@ -336,7 +336,7 @@ export default {
     async getPelangganById() {
       try {
         const data_pelanggan = await axios.get(
-          `http://localhost:3001/pelanggan/detailsById/${this.$route.params.id}`
+          `http://192.168.0.64:3001/pelanggan/detailsById/${this.$route.params.id}`
         );
         this.item_pelanggan = data_pelanggan.data.data[0];
         
@@ -359,7 +359,7 @@ export default {
         if (this.$v.$pendding || this.$v.$error) return;
 
         await axios.post(
-          "http://localhost:3001/pemakaian/create",
+          "http://192.168.0.64:3001/pemakaian/create",
           this.pemakaian_baru
         );
 
@@ -386,7 +386,7 @@ export default {
       try {
         let pelanggan_id = this.$route.params.id;
         const data_pemakaian = await axios.post(
-          "http://localhost:3001/pemakaian/listPemakaianByPelangganId",
+          "http://192.168.0.64:3001/pemakaian/listPemakaianByPelangganId",
           { pelanggan_id }
         );
 
@@ -404,7 +404,7 @@ export default {
       try {
         let pelanggan_id = this.$route.params.id;
         const data_pemakaian = await axios.post(
-          "http://localhost:3001/pemakaian/listPemakaianBulanLalu",
+          "http://192.168.0.64:3001/pemakaian/listPemakaianBulanLalu",
           { pelanggan_id }
         );
 
@@ -449,7 +449,7 @@ export default {
 
     async getBulan() {
       try {
-        const data_bulan = await axios.get("http://localhost:3001/bulan/list");
+        const data_bulan = await axios.get("http://192.168.0.64:3001/bulan/list");
         let dd = data_bulan.data.data;
         for (let i = 0; i < dd.length; i++) {
           dd[i].no = i + 1;
@@ -464,7 +464,7 @@ export default {
       try {
         let id = this.pemakaian_baru.bulan_id;
         const detail_bulan = await axios.get(
-          "http://localhost:3001/bulan/detailsById/" + id
+          "http://192.168.0.64:3001/bulan/detailsById/" + id
         );
         let db = detail_bulan.data.data[0];
         this.pemakaian_baru.nama_bulan = db.nama_bulan;
@@ -478,7 +478,7 @@ export default {
       try {
         let pelanggan_id = this.$route.params.id;
         const data_bulan = await axios.post(
-          "http://localhost:3001/bulan/listBulanByPelangganId",
+          "http://192.168.0.64:3001/bulan/listBulanByPelangganId",
           { pelanggan_id: pelanggan_id }
         );
         let db = data_bulan.data.data;

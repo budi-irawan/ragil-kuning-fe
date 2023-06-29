@@ -182,7 +182,7 @@ export default {
   methods: {
     async getDesa() {
       try {
-        const data_desa = await axios.get("http://localhost:3001/desa/list");
+        const data_desa = await axios.get("http://192.168.0.64:3001/desa/list");
         this.item_desa = data_desa.data.data;
       } catch (error) {
         console.log(error);
@@ -192,7 +192,7 @@ export default {
     async getDusunByDesaId() {
       try {
         const data_dusun = await axios.post(
-          `http://localhost:3001/dusun/listDusunByDesaId`,
+          `http://192.168.0.64:3001/dusun/listDusunByDesaId`,
           { desa_id: this.desa_id }
         );
         this.item_dusun = data_dusun.data.data;
@@ -204,7 +204,7 @@ export default {
     async getPelanggan() {
       try {
         const data_pelanggan = await axios.get(
-          "http://localhost:3001/pelanggan/list"
+          "http://192.168.0.64:3001/pelanggan/list"
         );
         let dp = data_pelanggan.data.data;
         for (let i = 0; i < dp.length; i++) {
@@ -235,7 +235,7 @@ export default {
     async deletePelanggan(id) {
       try {
         const data_pelanggan = await axios.get(
-          `http://localhost:3001/pelanggan/detailsById/${id}`
+          `http://192.168.0.64:3001/pelanggan/detailsById/${id}`
         );
         this.$swal({
           title: "Peringatan !",
@@ -250,7 +250,7 @@ export default {
           confirmButtonText: "Ya, hapus!",
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
-            await axios.post("http://localhost:3001/pelanggan/delete", { id });
+            await axios.post("http://192.168.0.64:3001/pelanggan/delete", { id });
             this.$swal({
               icon: "success",
               title: "Sukses",
