@@ -391,7 +391,6 @@ export default {
           "http://localhost:3001/pembayaran/createPembayaranGabungan",
           this.pembayaran_baru
         );
-
         let struk_baru = {
           nama_pelanggan: this.item_pelanggan.nama_pelanggan,
           kasir: this.item_user.nama_user,
