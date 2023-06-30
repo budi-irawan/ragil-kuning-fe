@@ -181,6 +181,22 @@ const routes = [
     name: 'tambah-tahun',
     component: () => import('../views/master/tahun/FormTambahTahunView')
   },
+  {
+    path: '/tunggakan/tiga-bulan',
+    name: 'tunggakan-tiga-bulan',
+    component: () => import('../views/tunggakan/TunggakanTigaBulan')
+  },
+  {
+    path: '/tunggakan/dua-bulan',
+    name: 'tunggakan-dua-bulan',
+    component: () => import('../views/tunggakan/TunggakanDuaBulan')
+  },
+  {
+    path: '/tunggakan/satu-bulan',
+    name: 'tunggakan-satu-bulan',
+    component: () => import('../views/tunggakan/TunggakanSatuBulan')
+  },
+  
 ]
 
 const router = new VueRouter({

@@ -96,7 +96,7 @@
             </router-link>
           </li>
 
-          <li v-if="isOwner || isKasir" class="nav-header">PEMBAYARAN</li>
+          <li class="nav-header">PEMBAYARAN</li>
           <li class="nav-item">
             <router-link v-if="isOwner || isKasir" to="/pembayaran/tagihan" class="nav-link">
               <font-awesome-icon icon="fa-solid fa-hand-holding-dollar" class="nav-icon"/>
@@ -110,7 +110,7 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link v-if="isOwner || isKasir" to="/pembayaran/laporan-excel" class="nav-link">
+            <router-link to="/pembayaran/laporan-excel" class="nav-link">
               <font-awesome-icon icon="fa-solid fa-file-excel" class="nav-icon"/>
               <p>Laporan</p>
             </router-link>
