@@ -1,10 +1,13 @@
 <template>
   <div>
     <app-nav-bar />
-    <app-side-bar />
     <div class="content-wrapper">
       <router-view />
-      <div class="container pt-3">
+      <section class="content">
+        <div class="container-fluid pt-3">
+        <div class="row mt-1 mb-3">
+          <app-top-bar />
+        </div>
         <div class="row mt-3 mb-4">
           <div class="col">
             <div class="card card-outline card-primary">
@@ -118,6 +121,7 @@
           </div>
         </div>
       </div>
+      </section>
     </div>
     <app-footer />
     <control-side-bar />

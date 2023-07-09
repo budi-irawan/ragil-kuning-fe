@@ -1,10 +1,13 @@
 <template>
   <div>
     <app-nav-bar />
-    <app-side-bar />
     <div class="content-wrapper">
       <router-view />
-      <div class="container pt-3">
+      <section class="content">
+        <div class="container-fluid pt-3">
+        <div class="row mt-1 mb-3">
+          <app-top-bar />
+        </div>
         <div class="row mt-3 mb-4">
           <div class="col">
             <div class="card card-outline card-primary">
@@ -22,12 +25,12 @@
                 </div>
               </div>
               <div class="card-body pad table-responsive">
-                <div class="table-responsive-md">
+                <div class="table-responsive-md" v-if="!loading">
                   <table class="table table-bordered table-hover">
                     <thead>
                       <tr>
                         <th scope="col" style="width: 5%">No</th>
-                        <th scope="col" style="width: 12%">Tanggal</th>
+                        <th scope="col" style="width: 15%">Tanggal</th>
                         <th scope="col" style="width: 18%">
                           Jumlah Pembayaran
                         </th>
@@ -46,9 +49,14 @@
                         <td>{{ formatRupiah(lp.total_denda_terbayar) }}</td>
                         <td>{{ formatRupiah(lp.total) }}</td>
                         <td class="tombol">
+                          <router-link class="btn btn-sm btn-success" :to="{ name: 'detail-settlement', params: { tanggal: lp.tanggal_bayar }, }" data-toggle="tooltip"
+                            data-placement="top"
+                            title="Detail Settlement">
+                            <i class="fas fa-solid fa-eye"></i>
+                          </router-link>
                           <button
                             type="button"
-                            class="btn btn-success btn-sm"
+                            class="btn btn-primary btn-sm"
                             @click="cetakSettlementReport(lp.tanggal_bayar)"
                           >
                             <i class="fa fa-print"></i>
@@ -62,11 +70,18 @@
                     </tbody>
                   </table>
                 </div>
+
+                <div v-else class="row muser">
+                  <div class="col text-center">
+                    <img :src="loadingImage" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      </section>
     </div>
     <app-footer />
     <control-side-bar />
@@ -81,14 +96,19 @@ export default {
   name: "LaporanPembayaran",
   data() {
     return {
+      loading: true,
       item_user: {},
       item_laporan: [],
+
+      loadingImage: require('../../../public/rolling.gif')
     };
   },
 
-  created() {
+  async created() {
     this.getUser();
-    this.getLaporanPembayaranPerHari();
+    // this.getLaporanPembayaranPerHari();
+    this.item_laporan = await this.getLaporanPembayaranPerHari();
+    this.loading = false 
   },
 
   methods: {
@@ -123,7 +143,7 @@ export default {
         for (let i = 0; i < db.length; i++) {
           db[i].no = i + 1;
         }
-        this.item_laporan = db;
+        return db
       } catch (error) {
         console.log(error);
       }
@@ -169,7 +189,8 @@ export default {
 };
 </script>
   
-  <style>
+
+<style>
 .tombol {
   text-align: center;
 }

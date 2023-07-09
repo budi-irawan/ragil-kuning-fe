@@ -11,6 +11,7 @@ import Vuelidate from 'vuelidate'
 import datePicker from 'vue-bootstrap-datetimepicker';
 import jQuery from 'jquery';
 import AppNavBar from './components/partials/AppNavBar'
+import AppTopBar from './components/partials/AppTopBar'
 import AppSideBar from './components/partials/AppSideBar'
 import AppFooter from './components/partials/AppFooter'
 import ControlSideBar from './components/partials/ControlSideBar'
@@ -34,6 +35,7 @@ import { faCircleXmark, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 library.add(faHandHoldingDroplet, faHandHoldingDollar, faFaucetDrip, faCircleXmark, faTrashCan, faLayerGroup, faMapLocationDot, faUserGear, faCircleUser, faMap, faRightToBracket, faCalendarPlus, faPaperPlane, faMoneyCheckDollar, faPrint, faNewspaper, faBook, faFileExcel, faDownload );
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('AppNavBar', AppNavBar)
+Vue.component('AppTopBar', AppTopBar)
 Vue.component('AppSideBar', AppSideBar)
 Vue.component('AppFooter', AppFooter)
 Vue.component('ControlSideBar', ControlSideBar)

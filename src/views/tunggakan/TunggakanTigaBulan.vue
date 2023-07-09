@@ -1,11 +1,13 @@
 <template>
     <div>
       <app-nav-bar />
-      <app-side-bar />
       <div class="content-wrapper">
         <router-view />
         <section class="content">
-          <div class="container-fluid">
+          <div class="container-fluid pt-3">
+            <div class="row mt-1 mb-3">
+              <app-top-bar />
+            </div>
             <div class="row pt-3">
               <!-- <div class="col-lg-3 col-6">
                 <div class="small-box bg-info">

@@ -142,6 +142,11 @@ const routes = [
     component: () => import('../views/pemakaian/pemakaian/DetailPemakaianView')
   },
   {
+    path: '/pemakaian/input-pemakaian',
+    name: 'input-pemakaian',
+    component: () => import('../views/pemakaian/pemakaian/InputPemakaian')
+  },
+  {
     path: '/pemakaian/cetak-formulir',
     name: 'cetak-formulir',
     component: () => import('../views/pemakaian/pemakaian/CetakFormulir')
@@ -160,6 +165,11 @@ const routes = [
     path: '/pembayaran/laporan',
     name: 'laporan',
     component: () => import('../views/pembayaran/LaporanPembayaran')
+  },
+  {
+    path: '/pembayaran/detail-settlement',
+    name: 'detail-settlement',
+    component: () => import('../views/pembayaran/SettlementDetail')
   },
   {
     path: '/pembayaran/laporan-excel',
