@@ -129,6 +129,7 @@
 </template>
     
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 import { required, numeric } from "vuelidate/lib/validators";
 
@@ -162,7 +163,7 @@ export default {
 
     async getDesa() {
       try {
-        const data_desa = await axios.get("http://localhost:3001/desa/list");
+        const data_desa = await axios.get(`${ipBackend}/desa/list`);
         let dd = data_desa.data.data;
         this.item_desa = dd;
       } catch (error) {
@@ -173,7 +174,7 @@ export default {
     async getDusunById() {
       try {
         const data_dusun = await axios.get(
-          `http://localhost:3001/dusun/detailsById/${this.$route.params.id}`
+          `${ipBackend}/dusun/detailsById/${this.$route.params.id}`
         );
 
         this.item_dusun = data_dusun.data.data[0];
@@ -187,7 +188,7 @@ export default {
         this.$v.$touch();
         if (this.$v.$pendding || this.$v.$error) return;
 
-        await axios.post("http://localhost:3001/dusun/update", this.item_dusun);
+        await axios.post(`${ipBackend}/dusun/update`, this.item_dusun);
         this.$swal({
           icon: "success",
           title: "Sukses",

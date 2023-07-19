@@ -66,6 +66,7 @@
   
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 import { required } from "vuelidate/lib/validators";
 
@@ -91,7 +92,7 @@ export default {
         this.$v.$touch();
         if (this.$v.$pendding || this.$v.$error) return;
 
-        await axios.post("http://localhost:3001/tahun/create", {
+        await axios.post(`${ipBackend}/tahun/create`, {
           nama_tahun: this.nama_tahun,
         });
         this.nama_tahun = "";

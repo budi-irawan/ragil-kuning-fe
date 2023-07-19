@@ -27,6 +27,11 @@ const routes = [
     component: () => import('../views/user/FormTambahUserView')
   },
   {
+    path: '/user/edit',
+    name: 'edit-user',
+    component: () => import('../views/user/FormEditUserView')
+  },
+  {
     path: '/master/wilayah',
     name: 'Wilayah',
     component: () => import('../views/master/wilayah/ListWilayahView')

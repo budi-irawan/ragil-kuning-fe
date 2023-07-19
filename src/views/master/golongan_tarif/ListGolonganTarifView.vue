@@ -81,6 +81,7 @@
   
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 export default {
   name: "ListGolonganTarifView",
@@ -104,7 +105,7 @@ export default {
 
     async getGolonganTarif() {
       try {
-        const data_golongan_tarif = await axios.get("http://localhost:3001/golongan_tarif/list");
+        const data_golongan_tarif = await axios.get(`${ipBackend}/golongan_tarif/list`);
 
         let db = data_golongan_tarif.data.data;
         for (let i = 0; i < db.length; i++) {
@@ -119,7 +120,7 @@ export default {
     async deleteGolonganTarif(id) {
       try {
         const data_golongan_tarif = await axios.get(
-          `http://localhost:3001/golongan_tarif/detailsById/${id}`
+          `${ipBackend}/golongan_tarif/detailsById/${id}`
         );
         
           this.$swal({
@@ -135,7 +136,7 @@ export default {
             confirmButtonText: "Ya, hapus!",
           }).then(async (hasil) => {
             if (hasil.isConfirmed == true) {
-              await axios.post("http://localhost:3001/golongan_tarif/delete", { id });
+              await axios.post(`${ipBackend}/golongan_tarif/delete`, { id });
               this.$swal({
                 icon: "success",
                 title: "Sukses",
@@ -155,7 +156,7 @@ export default {
     async getGolonganTarifById(id) {
       try {
         const data_golongan_tarif = await axios.get(
-          "http://localhost:3001/golongan_tarif/detailsById/" + id
+          `${ipBackend}/golongan_tarif/detailsById/` + id
         );
 
         this.pilih_golongan_tarif = data_golongan_tarif.data.data[0];

@@ -74,6 +74,7 @@
     
   
   <script>
+  import { ipBackend } from '@/ipBackend';
   import axios from "axios";
   import moment from "moment";
   export default {
@@ -104,7 +105,7 @@
       async getUser() {
         let token_user = localStorage.getItem("token");
         try {
-          const data_user = await this.$axios.get("http://localhost:3001/user/profil",{ headers: { token: token_user } });
+          const data_user = await this.$axios.get(`${ipBackend}/user/profil`,{ headers: { token: token_user } });
           let dd = data_user.data.data;
           this.item_user = dd[0];
         } catch (error) {
@@ -115,7 +116,7 @@
       async detailSettlementPerTanggal() {
         try {
           let tanggal = this.$route.params.tanggal;
-          const data_laporan = await axios.post("http://localhost:3001/pembayaran/detailSettlementPerTanggal", { tanggal });
+          const data_laporan = await axios.post(`${ipBackend}/pembayaran/detailSettlementPerTanggal`, { tanggal });
   
           let db = data_laporan.data.data;
           for (let i = 0; i < db.length; i++) {
@@ -132,8 +133,9 @@
     },
   };
   </script>
-    
-    <style>
+  
+  
+  <style>
   .tombol {
     text-align: center;
   }

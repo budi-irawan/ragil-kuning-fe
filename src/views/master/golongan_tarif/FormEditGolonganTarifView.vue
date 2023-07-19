@@ -184,7 +184,8 @@
 </template>
     
   
-  <script>
+<script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 import { required, numeric } from "vuelidate/lib/validators";
 
@@ -220,7 +221,7 @@ export default {
         this.$v.$touch();
         if (this.$v.$pendding || this.$v.$error) return;
 
-        await axios.post("http://localhost:3001/golongan_tarif/update", this.golongan_tarif_baru);
+        await axios.post(`${ipBackend}/golongan_tarif/update`, this.golongan_tarif_baru);
 
         this.$swal({
           icon: "success",
@@ -238,7 +239,7 @@ export default {
     async getGolonganTarifById(id) {
       try {
         const tarif = await axios.get(
-          "http://localhost:3001/golongan_tarif/detailsById/" + this.$route.params.id
+          `${ipBackend}/golongan_tarif/detailsById/` + this.$route.params.id
         );
 
         this.golongan_tarif_baru = tarif.data.data[0];
@@ -252,5 +253,5 @@ export default {
 </script>
     
   
-    <style>
+<style>
 </style>

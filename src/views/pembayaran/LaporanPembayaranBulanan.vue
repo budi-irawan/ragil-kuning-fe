@@ -101,6 +101,7 @@
   
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 export default {
   name: "LaporanPembayaranBulanan",
@@ -157,7 +158,7 @@ export default {
     async getBulan() {
       try {
         const data_bulan = await axios.get(
-          "http://localhost:3001/bulan/list"
+          `${ipBackend}/bulan/list`
         );
         let db = data_bulan.data.data;
         for (let i = 0; i < db.length; i++) {
@@ -172,7 +173,7 @@ export default {
     async getTahun() {
       try {
         let bulan_id = this.bulan_baru.bulan_id
-        const data_bulan = await axios.get("http://localhost:3001/bulan/detailsById/"+bulan_id);
+        const data_bulan = await axios.get(`${ipBackend}/bulan/detailsById/`+bulan_id);
         let db = data_bulan.data.data[0];
         this.bulan_baru.nama_tahun = db.nama_tahun
         this.formulir_baru.bulan_id = db.bulan_id
@@ -184,7 +185,7 @@ export default {
 
     async getLaporanBulanan() {
       try {
-        const result = await axios.post("http://localhost:3001/pembayaran/laporanPembayaranPerBulan", { bulan_id: this.formulir_baru.bulan_id, desa_id: this.formulir_baru.desa_id });
+        const result = await axios.post(`${ipBackend}/pembayaran/laporanPembayaranPerBulan`, { bulan_id: this.formulir_baru.bulan_id, desa_id: this.formulir_baru.desa_id });
         let db = result.data.data;
         for (let i = 0; i < db.length; i++) {
           db[i].no = i + 1;
@@ -197,7 +198,7 @@ export default {
 
     async getDesa() {
       try {
-        const data_desa = await axios.get("http://localhost:3001/desa/list");
+        const data_desa = await axios.get(`${ipBackend}/desa/list`);
         this.item_desa = data_desa.data.data;
       } catch (error) {
         console.log(error);
@@ -206,7 +207,7 @@ export default {
 
     async getDusunByDesaId() {
       try {
-        const data_dusun = await axios.post(`http://localhost:3001/dusun/listDusunByDesaId`,{ desa_id: this.formulir_baru.desa_id });
+        const data_dusun = await axios.post(`${ipBackend}/dusun/listDusunByDesaId`,{ desa_id: this.formulir_baru.desa_id });
         this.item_dusun = data_dusun.data.data;
       } catch (error) {
         console.log(error);
@@ -215,7 +216,7 @@ export default {
 
     async downloadLaporan() {
       try {
-        window.open(`http://localhost:3001/pembayaran/laporanPembayaranPerBulanExcel?bulan_id=${this.formulir_baru.bulan_id}&&desa_id=${this.formulir_baru.desa_id}`);
+        window.open(`${ipBackend}/pembayaran/laporanPembayaranPerBulanExcel?bulan_id=${this.formulir_baru.bulan_id}&&desa_id=${this.formulir_baru.desa_id}`);
         this.formulir_baru.bulan_id = ""
         this.formulir_baru.tahun_id = ""
         this.formulir_baru.desa_id = ""
@@ -227,7 +228,8 @@ export default {
 };
 </script>
   
-  <style>
+
+<style>
 .tombol {
   text-align: center;
 }

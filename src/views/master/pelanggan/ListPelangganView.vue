@@ -164,6 +164,7 @@
 </template>
   
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 
 export default {
@@ -186,7 +187,7 @@ export default {
   methods: {
     async getDesa() {
       try {
-        const data_desa = await axios.get("http://localhost:3001/desa/list");
+        const data_desa = await axios.get(`${ipBackend}/desa/list`);
         this.item_desa = data_desa.data.data;
       } catch (error) {
         console.log(error);
@@ -196,7 +197,7 @@ export default {
     async getDusunByDesaId() {
       try {
         const data_dusun = await axios.post(
-          `http://localhost:3001/dusun/listDusunByDesaId`,
+          `${ipBackend}/dusun/listDusunByDesaId`,
           { desa_id: this.desa_id }
         );
         this.item_dusun = data_dusun.data.data;
@@ -208,7 +209,7 @@ export default {
     async getPelanggan() {
       try {
         const data_pelanggan = await axios.get(
-          "http://localhost:3001/pelanggan/list"
+          `${ipBackend}/pelanggan/list`
         );
         let dp = data_pelanggan.data.data;
         for (let i = 0; i < dp.length; i++) {
@@ -239,7 +240,7 @@ export default {
     async deletePelanggan(id) {
       try {
         const data_pelanggan = await axios.get(
-          `http://localhost:3001/pelanggan/detailsById/${id}`
+          `${ipBackend}/pelanggan/detailsById/${id}`
         );
         this.$swal({
           title: "Peringatan !",
@@ -254,7 +255,7 @@ export default {
           confirmButtonText: "Ya, hapus!",
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
-            await axios.post("http://localhost:3001/pelanggan/delete", { id });
+            await axios.post(`${ipBackend}/pelanggan/delete`, { id });
             this.$swal({
               icon: "success",
               title: "Sukses",

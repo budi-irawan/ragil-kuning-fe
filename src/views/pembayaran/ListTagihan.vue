@@ -139,6 +139,7 @@
   
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 export default {
   name: "ListTagihan",
@@ -200,7 +201,7 @@ export default {
 
     async getDesa() {
       try {
-        const data_desa = await axios.get("http://localhost:3001/desa/list");
+        const data_desa = await axios.get(`${ipBackend}/desa/list`);
         this.item_desa = data_desa.data.data;
       } catch (error) {
         console.log(error);
@@ -210,7 +211,7 @@ export default {
     async getDusunByDesaId() {
       try {
         const data_dusun = await axios.post(
-          `http://localhost:3001/dusun/listDusunByDesaId`,
+          `${ipBackend}/dusun/listDusunByDesaId`,
           { desa_id: this.desa_id }
         );
         this.item_dusun = data_dusun.data.data;
@@ -222,7 +223,7 @@ export default {
     async getPembayaran() {
       try {
         const data_pembayaran = await axios.get(
-          "http://localhost:3001/pembayaran/list"
+          `${ipBackend}/pembayaran/list`
         );
         let dp = data_pembayaran.data.data;
         for (let i = 0; i < dp.length; i++) {

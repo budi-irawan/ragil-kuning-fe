@@ -107,8 +107,8 @@
 </template>
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
-// import authHeader from "@/views/auth/auth_header";
 export default {
   name: "ListTahunView",
   data() {
@@ -118,13 +118,6 @@ export default {
   },
 
   mounted() {
-    // console.log('mounted');
-    // let user = localStorage.getItem('token')
-    // console.log(user);
-    // this.token = user
-    // if (user) {
-    //   this.$router.push("/dashboard")
-    // }
   },
 
   created() {
@@ -134,10 +127,9 @@ export default {
   methods: {
     async getTahun() {
       let t = localStorage.getItem('token')
-      // console.log(t);
       try {
         const data_tahun = await axios.get(
-          "http://localhost:3001/tahun/list", {
+          `${ipBackend}/tahun/list`, {
             headers: {
               token: t
             }
@@ -156,7 +148,7 @@ export default {
     async deleteTahun(id) {
       try {
         const data_tahun = await axios.get(
-          `http://localhost:3001/tahun/detailsById/${id}`
+          `${ipBackend}/tahun/detailsById/${id}`
         );
         this.$swal({
           title: "Peringatan !",
@@ -168,7 +160,7 @@ export default {
           confirmButtonText: "Ya, hapus!",
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
-            await axios.post("http://localhost:3001/tahun/delete", { id });
+            await axios.post(`${ipBackend}/tahun/delete`, { id });
             this.$swal({
               icon: "success",
               title: "Sukses",
@@ -187,11 +179,11 @@ export default {
     async aktifkanTahun(id) {
       try {
         const tahun = await axios.get(
-          "http://localhost:3001/tahun/detailsById/" + id
+          `${ipBackend}/tahun/detailsById/` + id
         );
 
         let cek = await axios.post(
-          "http://localhost:3001/tahun/aktifkantahun",
+          `${ipBackend}/tahun/aktifkantahun`,
           tahun.data.data[0]
         );
         if (cek.data.status == 204) {
@@ -219,7 +211,7 @@ export default {
     async nonAktifkanTahun(id) {
       try {
         const tahun = await axios.get(
-          "http://localhost:3001/tahun/detailsById/" + id
+          `${ipBackend}/tahun/detailsById/` + id
         );
 
         this.$swal({
@@ -236,7 +228,7 @@ export default {
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
             await axios.post(
-              "http://localhost:3001/tahun/nonAktifkanTahun",
+              `${ipBackend}/tahun/nonAktifkanTahun`,
               tahun.data.data[0]
             );
             this.$swal({

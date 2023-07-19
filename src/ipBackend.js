@@ -1,0 +1,1 @@
+export const ipBackend = "http://localhost:3001"

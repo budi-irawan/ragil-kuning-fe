@@ -141,6 +141,7 @@
   
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 import { required } from "vuelidate/lib/validators";
 
@@ -178,7 +179,7 @@ export default {
         this.$v.$touch();
         if (this.$v.$pendding || this.$v.$error) return;
 
-        await axios.post("http://localhost:3001/user/register", this.item_user);
+        await axios.post(`${ipBackend}/user/register`, this.item_user);
         this.item_user.nama_user = "";
         this.item_user.username = "";
         this.item_user.password = "";

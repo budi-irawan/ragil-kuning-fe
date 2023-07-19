@@ -233,6 +233,7 @@
 </template>
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 import { required, numeric } from "vuelidate/lib/validators";
 
@@ -256,8 +257,6 @@ export default {
   },
 
   mounted() {
-    console.log("Mounted");
-    // this.init();
   },
 
   validations: {
@@ -285,7 +284,7 @@ export default {
     async getDesa() {
       try {
         const data_desa = await axios.get(
-          "http://localhost:3001/desa/list"
+          `${ipBackend}/desa/list`
         );
         this.item_desa = data_desa.data.data;
       } catch (error) {
@@ -296,7 +295,7 @@ export default {
     async getDusunByDesaId() {
       try {
         const data_dusun = await axios.post(
-          `http://localhost:3001/dusun/listDusunByDesaId`,{desa_id: this.pelanggan_baru.desa_id}
+          `${ipBackend}/dusun/listDusunByDesaId`,{desa_id: this.pelanggan_baru.desa_id}
         );
         this.item_dusun = data_dusun.data.data;
       } catch (error) {
@@ -307,7 +306,7 @@ export default {
     async getGolonganTarif() {
       try {
         const data_golongan_tarif = await axios.get(
-          "http://localhost:3001/golongan_tarif/list"
+          `${ipBackend}/golongan_tarif/list`
         );
         this.item_golongan_tarif = data_golongan_tarif.data.data;
       } catch (error) {
@@ -321,7 +320,7 @@ export default {
         if (this.$v.$pendding || this.$v.$error) return;
 
         await axios.post(
-          "http://localhost:3001/pelanggan/create",
+          `${ipBackend}/pelanggan/create`,
           this.pelanggan_baru
         );
 
@@ -332,7 +331,6 @@ export default {
           timer: 3000,
         });
         this.$router.push("/master/pelanggan");
-        // this.init();
       } catch (error) {
         console.log(error);
       }

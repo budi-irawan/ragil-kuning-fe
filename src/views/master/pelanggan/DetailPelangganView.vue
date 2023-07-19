@@ -35,7 +35,7 @@
                             </div>
                             <div class="col-sm-6">
                               <img
-                                :src="`http://localhost:3001/uploads/${items[0].foto}`"
+                                :src="`${ipBackend}/uploads/${items[0].foto}`"
                                 width="100%"
                               />
                             </div>
@@ -80,6 +80,7 @@
 </template>
   
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 import NavbarComponent from "@/components/NavbarComponent.vue";
 
@@ -102,7 +103,7 @@ export default {
     async getPelangganById() {
       try {
         const data_pelanggan = await axios.get(
-          `http://localhost:3001/pelanggan/detailsById/${this.$route.params.id}`
+          `${ipBackend}/pelanggan/detailsById/${this.$route.params.id}`
         );
         this.items = data_pelanggan.data.data;
       } catch (error) {
@@ -122,7 +123,7 @@ export default {
           confirmButtonText: "Ya, hapus!",
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
-            await axios.post("http://localhost:3001/pelanggan/delete", { id });
+            await axios.post(`${ipBackend}/pelanggan/delete`, { id });
             this.$swal({
               icon: "success",
               title: "Sukses",

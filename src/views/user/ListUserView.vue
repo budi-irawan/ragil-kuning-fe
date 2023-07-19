@@ -41,25 +41,25 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="item in items" :key="item.dusun_id">
+                      <tr v-for="item in items" :key="item.id">
                         <td>{{ item.no }}</td>
                         <td>{{ item.nama_user }}</td>
                         <td>{{ item.username }}</td>
                         <td>{{ item.role }}</td>
                         <td class="tombol">
-                          <router-link
+                          <!-- <router-link
                             class="btn btn-sm btn-warning"
                             :to="{
-                              name: 'edit-dusun',
-                              params: { id: item.dusun_id },
+                              name: 'edit-user',
+                              params: { id: item.id },
                             }"
                           >
                             <i class="fas fa-solid fa-pen"></i>
-                          </router-link>
+                          </router-link> -->
                           <button
                             type="button"
                             class="btn btn-sm btn-danger"
-                            @click.prevent="deleteDusun(item.dusun_id)"
+                            @click.prevent="deleteUser(item.id)"
                           >
                             <i class="fas fa-trash" style="color: white"></i>
                           </button>
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 export default {
   name: "ListUserView",
@@ -98,13 +99,6 @@ export default {
   },
 
   mounted() {
-    // console.log('mounted');
-    // let user = localStorage.getItem('token')
-    // console.log(user);
-    // this.token = user
-    // if (user) {
-    //   this.$router.push("/dashboard")
-    // }
   },
 
   async created() {
@@ -115,7 +109,7 @@ export default {
   methods: {
     async getUser() {
       try {
-        const data_user = await axios.get("http://localhost:3001/user/list", {
+        const data_user = await axios.get(`${ipBackend}/user/list`, {
           headers: {
             token: localStorage.getItem("token"),
           },
@@ -130,10 +124,10 @@ export default {
       }
     },
 
-    async deleteDusun(id) {
+    async deleteUser(id) {
       try {
         const data_user = await axios.get(
-          `http://localhost:3001/user/detailsById/${id}`
+          `${ipBackend}/user/detailsById/${id}`
         );
         this.$swal({
           title: "Peringatan !",
@@ -148,7 +142,7 @@ export default {
           confirmButtonText: "Ya, hapus!",
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
-            await axios.post("http://localhost:3001/user/delete", { id });
+            await axios.post(`${ipBackend}/user/delete`, { id });
             this.$swal({
               icon: "success",
               title: "Sukses",

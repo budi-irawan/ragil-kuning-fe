@@ -35,7 +35,6 @@
                         @change="getDusunByDesaId()"
                         v-model="desa_id"
                       >
-                        <option>--Desa--</option>
                         <option
                           v-for="row_desa in item_desa"
                           :key="row_desa.id"
@@ -53,7 +52,6 @@
                         aria-label="Default select example"
                         v-model="dusun_id"
                       >
-                        <option>--Dusun--</option>
                         <option
                           v-for="row_dusun in item_dusun"
                           :key="row_dusun.dusun_id"
@@ -175,6 +173,7 @@
   
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 export default {
   name: "ListPemakaianView",
@@ -230,7 +229,7 @@ export default {
   methods: {
     async getDesa() {
       try {
-        const data_desa = await axios.get("http://localhost:3001/desa/list");
+        const data_desa = await axios.get(`${ipBackend}/desa/list`);
         this.item_desa = data_desa.data.data;
       } catch (error) {
         console.log(error);
@@ -240,7 +239,7 @@ export default {
     async getDusunByDesaId() {
       try {
         const data_dusun = await axios.post(
-          `http://localhost:3001/dusun/listDusunByDesaId`,
+          `${ipBackend}/dusun/listDusunByDesaId`,
           { desa_id: this.desa_id }
         );
         this.item_dusun = data_dusun.data.data;
@@ -252,7 +251,7 @@ export default {
     async getPemakaian() {
       try {
         const data_pemakaian = await axios.get(
-          "http://localhost:3001/pemakaian/list"
+          `${ipBackend}/pemakaian/list`
         );
 
         let db = data_pemakaian.data.data;
@@ -267,7 +266,7 @@ export default {
 
     async cetakSuratPeringatan(pelanggan_id) {
       try {
-        window.open("http://localhost:3001/pembayaran/cetakSuratPeringatan/" + pelanggan_id)
+        window.open(`${ipBackend}/pembayaran/cetakSuratPeringatan/` + pelanggan_id)
       } catch (error) {
         console.log(error);
       }
@@ -275,8 +274,9 @@ export default {
   },
 };
 </script>
-  
-  <style>
+
+
+<style>
 .tombol {
   text-align: center;
 }

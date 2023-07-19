@@ -194,6 +194,7 @@
     
   
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 import { required, numeric } from "vuelidate/lib/validators";
 
@@ -231,7 +232,7 @@ export default {
         if (this.$v.$pendding || this.$v.$error) return;
 
         await axios.post(
-          "http://localhost:3001/golongan_tarif/create",
+          `${ipBackend}/golongan_tarif/create`,
           this.golongan_tarif_baru
         );
 

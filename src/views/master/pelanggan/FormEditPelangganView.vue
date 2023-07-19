@@ -238,6 +238,7 @@
   
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 import { required, numeric } from "vuelidate/lib/validators";
 
@@ -278,7 +279,7 @@ export default {
     async getPelangganById() {
       try {
         const data_pelanggan = await axios.get(
-          `http://localhost:3001/pelanggan/detailsById/${this.$route.params.id}`
+          `${ipBackend}/pelanggan/detailsById/${this.$route.params.id}`
         );
 
         this.item_pelanggan = data_pelanggan.data.data[0];
@@ -289,9 +290,8 @@ export default {
 
     async getDesa() {
       try {
-        const data_desa = await axios.get("http://localhost:3001/desa/list");
+        const data_desa = await axios.get(`${ipBackend}/desa/list`);
         this.item_desa = data_desa.data.data;
-        // console.log(this.item_desa);
       } catch (error) {
         console.log(error);
       }
@@ -300,11 +300,10 @@ export default {
     async getDusunByDesaId() {
       try {
         const data_dusun = await axios.post(
-          `http://localhost:3001/dusun/listDusunByDesaId`,
+          `${ipBackend}/dusun/listDusunByDesaId`,
           { desa_id: this.item_pelanggan.desa_id }
         );
         this.item_dusun = data_dusun.data.data;
-        console.log(this.item_dusun);
       } catch (error) {
         console.log(error);
       }
@@ -313,7 +312,7 @@ export default {
     async getGolonganTarif() {
       try {
         const data_golongan_tarif = await axios.get(
-          "http://localhost:3001/golongan_tarif/list"
+          `${ipBackend}/golongan_tarif/list`
         );
         this.item_golongan_tarif = data_golongan_tarif.data.data;
       } catch (error) {
@@ -327,7 +326,7 @@ export default {
         if (this.$v.$pendding || this.$v.$error) return;
 
         await axios.post(
-          `http://localhost:3001/pelanggan/update`,
+          `${ipBackend}/pelanggan/update`,
           this.item_pelanggan
         );
         this.$swal({

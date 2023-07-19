@@ -78,6 +78,7 @@
 </template>
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 export default {
   name: "ListDusunView",
@@ -105,7 +106,7 @@ export default {
     async getDusun() {
       try {
         const data_dusun = await axios.get(
-          "http://localhost:3001/dusun/list"
+          `${ipBackend}/dusun/list`
         );
         let dd = data_dusun.data.data;
         for (let i = 0; i < dd.length; i++) {
@@ -120,7 +121,7 @@ export default {
     async deleteDusun(id) {
       try {
         const data_dusun = await axios.get(
-          `http://localhost:3001/dusun/detailsById/${id}`
+          `${ipBackend}/dusun/detailsById/${id}`
         );
         this.$swal({
           title: "Peringatan !",
@@ -132,7 +133,7 @@ export default {
           confirmButtonText: "Ya, hapus!",
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
-            await axios.post("http://localhost:3001/dusun/delete", { id });
+            await axios.post(`${ipBackend}/dusun/delete`, { id });
             this.$swal({
               icon: "success",
               title: "Sukses",

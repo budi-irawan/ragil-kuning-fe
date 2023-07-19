@@ -60,6 +60,8 @@
   </template>
   
   <script>
+  import { ipBackend } from '@/ipBackend';
+
   export default {
     name: "Login",
     data() {
@@ -90,7 +92,7 @@
         this.$eventBus.$emit("loadingStatus", true);
   
         this.$axios
-          .post("http://localhost:3001/user/login", this.user)
+          .post(`${ipBackend}/user/login`, this.user)
           .then((res) => {
             this.$eventBus.$emit("loadingStatus", false);
             if (res.data.status != 200) {

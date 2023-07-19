@@ -90,6 +90,7 @@
   
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 import moment from "moment";
 export default {
@@ -123,7 +124,7 @@ export default {
       let token_user = localStorage.getItem("token");
       try {
         const data_user = await this.$axios.get(
-          "http://localhost:3001/user/profil",
+          `${ipBackend}/user/profil`,
           { headers: { token: token_user } }
         );
         let dd = data_user.data.data;
@@ -136,7 +137,7 @@ export default {
     async getLaporanPembayaranPerHari() {
       try {
         const data_laporan = await axios.get(
-          "http://localhost:3001/pembayaran/laporanPembayaranPerHari"
+          `${ipBackend}/pembayaran/laporanPembayaranPerHari`
         );
 
         let db = data_laporan.data.data;
@@ -152,7 +153,7 @@ export default {
     async cetakSettlementReport(tanggal_bayar) {
       try {
         let tanggal = tanggal_bayar;
-        let hasil = await axios.post("http://localhost:3001/pembayaran/cetakLaporanPembayaranPerTanggal", { tanggal });
+        let hasil = await axios.post(`${ipBackend}/pembayaran/cetakLaporanPembayaranPerTanggal`, { tanggal });
         let dataLaporan = hasil.data.data;
         console.log(dataLaporan);
 

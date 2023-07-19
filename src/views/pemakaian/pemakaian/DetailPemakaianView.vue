@@ -254,6 +254,7 @@
   
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 import { required, numeric } from "vuelidate/lib/validators";
 import moment from "moment";
@@ -340,7 +341,7 @@ export default {
     async getPelangganById() {
       try {
         const data_pelanggan = await axios.get(
-          `http://localhost:3001/pelanggan/detailsById/${this.$route.params.id}`
+          `${ipBackend}/pelanggan/detailsById/${this.$route.params.id}`
         );
         this.item_pelanggan = data_pelanggan.data.data[0];
         
@@ -363,7 +364,7 @@ export default {
         if (this.$v.$pendding || this.$v.$error) return;
 
         await axios.post(
-          "http://localhost:3001/pemakaian/create",
+          `${ipBackend}/pemakaian/create`,
           this.pemakaian_baru
         );
 
@@ -390,7 +391,7 @@ export default {
       try {
         let pelanggan_id = this.$route.params.id;
         const data_pemakaian = await axios.post(
-          "http://localhost:3001/pemakaian/listPemakaianByPelangganId",
+          `${ipBackend}/pemakaian/listPemakaianByPelangganId`,
           { pelanggan_id }
         );
 
@@ -408,7 +409,7 @@ export default {
       try {
         let pelanggan_id = this.$route.params.id;
         const data_pemakaian = await axios.post(
-          "http://localhost:3001/pemakaian/listPemakaianBulanLalu",
+          `${ipBackend}/pemakaian/listPemakaianBulanLalu`,
           { pelanggan_id }
         );
 
@@ -453,7 +454,7 @@ export default {
 
     async getBulan() {
       try {
-        const data_bulan = await axios.get("http://localhost:3001/bulan/list");
+        const data_bulan = await axios.get(`${ipBackend}/bulan/list`);
         let dd = data_bulan.data.data;
         for (let i = 0; i < dd.length; i++) {
           dd[i].no = i + 1;
@@ -468,7 +469,7 @@ export default {
       try {
         let id = this.pemakaian_baru.bulan_id;
         const detail_bulan = await axios.get(
-          "http://localhost:3001/bulan/detailsById/" + id
+          `${ipBackend}/bulan/detailsById/` + id
         );
         let db = detail_bulan.data.data[0];
         this.pemakaian_baru.nama_bulan = db.nama_bulan;
@@ -482,7 +483,7 @@ export default {
       try {
         let pelanggan_id = this.$route.params.id;
         const data_bulan = await axios.post(
-          "http://localhost:3001/bulan/listBulanByPelangganId",
+          `${ipBackend}/bulan/listBulanByPelangganId`,
           { pelanggan_id: pelanggan_id }
         );
         let db = data_bulan.data.data;

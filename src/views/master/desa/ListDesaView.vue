@@ -74,8 +74,8 @@
 </template>
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
-// import authHeader from "@/views/auth/auth_header";
 export default {
   name: "ListDesaView",
   data() {
@@ -104,7 +104,7 @@ export default {
       // console.log(t);
       try {
         const data_desa = await axios.get(
-          "http://localhost:3001/desa/list", {
+          `${ipBackend}/desa/list`, {
             headers: {
               token: t
             }
@@ -123,7 +123,7 @@ export default {
     async deleteDesa(id) {
       try {
         const data_desa = await axios.get(
-          `http://localhost:3001/desa/detailsById/${id}`
+          `${ipBackend}/desa/detailsById/${id}`
         );
         this.$swal({
           title: "Peringatan !",
@@ -135,7 +135,7 @@ export default {
           confirmButtonText: "Ya, hapus!",
         }).then(async (hasil) => {
           if (hasil.isConfirmed == true) {
-            await axios.post("http://localhost:3001/desa/delete", { id });
+            await axios.post(`${ipBackend}/desa/delete`, { id });
             this.$swal({
               icon: "success",
               title: "Sukses",

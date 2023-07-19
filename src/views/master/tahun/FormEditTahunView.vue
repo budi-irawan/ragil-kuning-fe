@@ -65,6 +65,7 @@
 </template>
     
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 import { required } from "vuelidate/lib/validators";
 
@@ -94,7 +95,7 @@ export default {
     async getDesaById() {
       try {
         const data_desa = await axios.get(
-          `http://localhost:3001/desa/detailsById/${this.$route.params.id}`
+          `${ipBackend}/desa/detailsById/${this.$route.params.id}`
         );
 
         this.item_desa = data_desa.data.data[0];
@@ -106,7 +107,7 @@ export default {
 
     async updateDesa() {
       try {
-        await axios.post("http://localhost:3001/desa/update", this.item_desa);
+        await axios.post(`${ipBackend}/desa/update`, this.item_desa);
         this.$swal({
           icon: "success",
           title: "Sukses",

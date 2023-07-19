@@ -14,65 +14,109 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-plus-circle"></i>
-                  Form Edit Data Dusun
+                  Form Edit Data User
                 </h3>
               </div>
               <div class="card-body">
                 <div class="row">
                   <div class="col-12">
-                    <form @submit.prevent="updateDusun">
+                    <form @submit.prevent="updateUser">
                       <div class="row mb-3">
-                        <label for="nama_desa" class="col-sm-3 col-form-label"
-                          >Nama Dusun<span class="text-danger"> *</span></label
+                        <label for="nama_user" class="col-sm-3 col-form-label"
+                          >Nama User<span class="text-danger"> *</span></label
                         >
                         <div class="col-sm-9">
                           <input
                             type="text"
                             class="form-control"
-                            id="nama_dusun"
-                            v-model.trim="$v.item_dusun.nama_dusun.$model"
+                            id="nama_user"
+                            v-model.trim="$v.item_user.nama_user.$model"
                             :class="{
                               'is-invalid': validationStatus(
-                                $v.item_dusun.nama_dusun
+                                $v.item_user.nama_user
                               ),
                             }"
                           />
                           <div
-                            v-if="!$v.item_dusun.nama_dusun.required"
+                            v-if="!$v.item_user.nama_user.required"
                             class="invalid-feedback"
                           >
-                            Nama dusun harus diisi
+                            Nama user harus diisi
                           </div>
                         </div>
                       </div>
+
                       <div class="row mb-3">
-                        <label for="wilayah" class="col-sm-3 col-form-label"
-                          >Desa<span class="text-danger">*</span></label
+                        <label for="username" class="col-sm-3 col-form-label"
+                          >Username<span class="text-danger"> *</span></label
+                        >
+                        <div class="col-sm-9">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="username"
+                            v-model.trim="$v.item_user.username.$model"
+                            :class="{
+                              'is-invalid': validationStatus(
+                                $v.item_user.username
+                              ),
+                            }"
+                          />
+                          <div
+                            v-if="!$v.item_user.username.required"
+                            class="invalid-feedback"
+                          >
+                            Username harus diisi
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label for="password" class="col-sm-3 col-form-label"
+                          >Password<span class="text-danger"> *</span></label
+                        >
+                        <div class="col-sm-9">
+                          <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            v-model.trim="$v.item_user.password.$model"
+                            :class="{
+                              'is-invalid': validationStatus(
+                                $v.item_user.password
+                              ),
+                            }"
+                          />
+                          <div
+                            v-if="!$v.item_user.password.required"
+                            class="invalid-feedback"
+                          >
+                            Password harus diisi
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label for="role" class="col-sm-3 col-form-label"
+                          >Role<span class="text-danger">*</span></label
                         >
                         <div class="col-sm-9">
                           <select
                             class="form-control"
                             aria-label="Default select example"
-                            v-model.trim="$v.item_dusun.desa_id.$model"
+                            v-model.trim="$v.item_user.role.$model"
                             :class="{
-                              'is-invalid': validationStatus(
-                                $v.item_dusun.desa_id
-                              ),
+                              'is-invalid': validationStatus($v.item_user.role),
                             }"
                           >
-                            <option
-                              v-for="row_desa in item_desa"
-                              :key="row_desa.id"
-                              :value="row_desa.id"
-                            >
-                              {{ row_desa.nama_desa }}
-                            </option>
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="KASIR">KASIR</option>
                           </select>
                           <div
-                            v-if="!$v.item_dusun.desa_id.required"
+                            v-if="!$v.item_user.role.required"
                             class="invalid-feedback"
                           >
-                            Nama golongan tarif harus diisi
+                            Role harus diisi
                           </div>
                         </div>
                       </div>
@@ -100,25 +144,24 @@ import axios from "axios";
 import { required } from "vuelidate/lib/validators";
 
 export default {
-  name: "FormEditDusunView",
+  name: "FormEditUserView",
   data() {
     return {
-      item_dusun: {},
-
-      item_desa: [],
+      item_user: {},
     };
   },
 
   validations: {
-    item_dusun: {
-      nama_dusun: { required },
-      desa_id: { required },
+    item_user: {
+      nama_user: { required },
+      username: { required },
+      password: { required },
+      role: { required },
     },
   },
 
   created: function () {
-    this.getDusunById();
-    this.getDesa();
+    this.getUserById();
   },
 
   methods: {
@@ -126,42 +169,37 @@ export default {
       return typeof validation != "undefined" ? validation.$error : false;
     },
 
-    async getDesa() {
+    async getUserById() {
       try {
-        const data_desa = await axios.get("http://localhost:3001/desa/list");
-        let dd = data_desa.data.data;
-        this.item_desa = dd;
-      } catch (error) {
-        console.log(error);
-      }
-    },
-
-    async getDusunById() {
-      try {
-        const data_dusun = await axios.get(
-          `http://localhost:3001/dusun/detailsById/${this.$route.params.id}`
+        const data_user = await axios.get(
+          `http://localhost:3001/user/detailsById/${this.$route.params.id}`, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        }
         );
 
-        this.item_dusun = data_dusun.data.data[0];
+        console.log(data_user.data.data[0]);
+        this.item_user = data_user.data.data[0];
       } catch (error) {
         console.log(error);
       }
     },
 
-    async updateDusun() {
+    async updateUser() {
       try {
         this.$v.$touch();
         if (this.$v.$pendding || this.$v.$error) return;
 
-        await axios.post("http://localhost:3001/dusun/update", this.item_dusun);
+        await axios.post("http://localhost:3001/user/update", this.item_user);
         this.$swal({
           icon: "success",
           title: "Sukses",
-          text: "Data dusun berhasil diupdate",
+          text: "Data user berhasil diupdate",
           showConfirmButton: false,
           timer: 3000,
         });
-        this.$router.push("/master/dusun");
+        this.$router.push("/user");
       } catch (error) {
         console.log(error);
       }

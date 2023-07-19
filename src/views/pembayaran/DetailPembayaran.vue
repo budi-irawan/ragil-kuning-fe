@@ -242,6 +242,7 @@
 </template>
 
 <script>
+import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 import moment from "moment";
 
@@ -309,7 +310,7 @@ export default {
       let token_user = localStorage.getItem("token");
       try {
         const data_user = await this.$axios.get(
-          "http://localhost:3001/user/profil",
+          `${ipBackend}/user/profil`,
           { headers: { token: token_user } }
         );
         let dd = data_user.data.data;
@@ -321,7 +322,7 @@ export default {
 
     async getPelangganById() {
       try {
-        const data_pelanggan = await axios.get(`http://localhost:3001/pelanggan/detailsById/${this.$route.params.id}`);
+        const data_pelanggan = await axios.get(`${ipBackend}/pelanggan/detailsById/${this.$route.params.id}`);
         this.item_pelanggan = data_pelanggan.data.data[0];
         this.pembayaran_baru.pelanggan_id = data_pelanggan.data.data[0].pelanggan_id;
         this.pembayaran_baru.tanggal_jatuh_tempo = data_pelanggan.data.data[0].tanggal_jatuh_tempo;
@@ -334,11 +335,11 @@ export default {
     async getTagihanByPelangganId() {
       try {
         let pelanggan_id = this.$route.params.id;
-        const data_pelanggan = await axios.get(`http://localhost:3001/pelanggan/detailsById/${pelanggan_id}`);
+        const data_pelanggan = await axios.get(`${ipBackend}/pelanggan/detailsById/${pelanggan_id}`);
         let tanggal_jatuh_tempo = data_pelanggan.data.data[0].tanggal_jatuh_tempo;
         let nominal_denda = data_pelanggan.data.data[0].nominal_denda;
         
-        const data_pembayaran = await axios.post("http://localhost:3001/pembayaran/listTagihanByPelangganId",
+        const data_pembayaran = await axios.post(`${ipBackend}/pembayaran/listTagihanByPelangganId`,
           { pelanggan_id, tanggal_jatuh_tempo, nominal_denda }
         );
 
@@ -392,7 +393,7 @@ export default {
     async savePembayaran() {
       try {
         let dataPembayaran = await axios.post(
-          "http://localhost:3001/pembayaran/createPembayaranGabungan",
+          `${ipBackend}/pembayaran/createPembayaranGabungan`,
           this.pembayaran_baru
         );
         let struk_baru = {
@@ -424,6 +425,7 @@ export default {
 
         this.getPelangganById();
         this.getTagihanByPelangganId();
+        this.$router.push("/pembayaran/tagihan");
         const kirim_struk = await axios.post("http://localhost:4000/print", {
           struk_baru,
         });
