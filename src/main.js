@@ -29,10 +29,10 @@ import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faHandHoldingDroplet, faHandHoldingDollar, faFaucetDrip, faLayerGroup, faMapLocationDot, faUserGear, faCircleUser, faMap, faRightToBracket, faCalendarPlus, faPaperPlane, faMoneyCheckDollar, faPrint, faNewspaper, faBook, faFileExcel, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faHandHoldingDroplet, faHandHoldingDollar, faFaucetDrip, faLayerGroup, faMapLocationDot, faUserGear, faCircleUser, faMap, faRightToBracket, faCalendarPlus, faPaperPlane, faMoneyCheckDollar, faPrint, faNewspaper, faBook, faFileExcel, faDownload, faFileLines, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
-library.add(faHandHoldingDroplet, faHandHoldingDollar, faFaucetDrip, faCircleXmark, faTrashCan, faLayerGroup, faMapLocationDot, faUserGear, faCircleUser, faMap, faRightToBracket, faCalendarPlus, faPaperPlane, faMoneyCheckDollar, faPrint, faNewspaper, faBook, faFileExcel, faDownload );
+library.add(faHandHoldingDroplet, faHandHoldingDollar, faFaucetDrip, faCircleXmark, faTrashCan, faLayerGroup, faMapLocationDot, faUserGear, faCircleUser, faMap, faRightToBracket, faCalendarPlus, faPaperPlane, faMoneyCheckDollar, faPrint, faNewspaper, faBook, faFileExcel, faDownload, faFileLines, faFileInvoice );
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('AppNavBar', AppNavBar)
 Vue.component('AppTopBar', AppTopBar)

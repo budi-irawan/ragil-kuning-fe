@@ -157,9 +157,14 @@ const routes = [
     component: () => import('../views/pemakaian/pemakaian/CetakFormulir')
   },
   {
-    path: '/pembayaran',
-    name: 'pembayaran',
-    component: () => import('../views/pembayaran/FormTambahPembayaranView')
+    path: '/pembayaran/cari-pelanggan',
+    name: 'cari-pelanggan',
+    component: () => import('../views/pembayaran/FormPencarianPembayaran')
+  },
+  {
+    path: '/pembayaran/hasil-pencarian',
+    name: 'hasil-pencarian',
+    component: () => import('../views/pembayaran/HasilPencarian')
   },
   {
     path: '/pembayaran/tagihan',
@@ -180,6 +185,16 @@ const routes = [
     path: '/pembayaran/laporan-excel',
     name: 'laporan-excel',
     component: () => import('../views/pembayaran/LaporanPembayaranBulanan')
+  },
+  {
+    path: '/pembayaran/laporan-harian',
+    name: 'laporan-harian',
+    component: () => import('../views/pembayaran/LaporanHarian')
+  },
+  {
+    path: '/pembayaran/laporan-detail',
+    name: 'laporan-detail',
+    component: () => import('../views/pembayaran/LaporanDetail')
   },
   {
     path: '/pembayaran/detail-pembayaran',

@@ -151,7 +151,6 @@
                             class="form-control"
                             id="meter_awal"
                             v-model="pemakaian_baru.meter_awal"
-                            disabled
                           />
                         </div>
                       </div>

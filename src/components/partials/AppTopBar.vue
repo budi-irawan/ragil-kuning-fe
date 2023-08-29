@@ -28,21 +28,32 @@
       <font-awesome-icon icon="fa-solid fa-faucet-drip" class="nav-icon" />
       <p>Pemakaian</p>
     </router-link>
-    <router-link v-if="isOwner || isKasir" to="/pembayaran/tagihan" class="btn btn-app">
+    <router-link v-if="isOwner || isKasir" to="/pembayaran/cari-pelanggan" class="btn btn-app">
       <font-awesome-icon
         icon="fa-solid fa-hand-holding-dollar"
         class="nav-icon"
       />
       <p>Tagihan</p>
     </router-link>
-    <router-link v-if="isOwner || isKasir" to="/pembayaran/laporan" class="btn btn-app">
-      <font-awesome-icon icon="fa-solid fa-book" class="nav-icon"/>
-      <p>Settlement</p>
+
+    <router-link to="/pembayaran/laporan-harian" class="btn btn-app">
+      <font-awesome-icon icon="fa-solid fa-file-lines" class="nav-icon"/>
+      <p>Lap.Harian</p>
+    </router-link>
+    <router-link to="/pembayaran/laporan-detail" class="btn btn-app">
+      <font-awesome-icon icon="fa-solid fa-file-invoice" class="nav-icon"/>
+      <p>Lap.Detail</p>
     </router-link>
     <router-link to="/pembayaran/laporan-excel" class="btn btn-app">
       <font-awesome-icon icon="fa-solid fa-file-excel" class="nav-icon"/>
       <p>Laporan</p>
     </router-link>
+    
+    <router-link v-if="isOwner || isKasir" to="/pembayaran/laporan" class="btn btn-app">
+      <font-awesome-icon icon="fa-solid fa-book" class="nav-icon"/>
+      <p>Settlement</p>
+    </router-link>
+    
     <router-link v-if="isOwner" to="/user" class="btn btn-app">
       <font-awesome-icon icon="fa-solid fa-user-gear" class="nav-icon" />
       <p>User</p>

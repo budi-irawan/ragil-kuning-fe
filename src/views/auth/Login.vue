@@ -8,12 +8,14 @@
             </div>
             <div class="card-body">
   
+            <form>
               <div class="input-group mb-3">
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Username"
                   v-model="user.username"
+                  v-on:keyup.enter="nextPlease"
                 />
                 <div class="input-group-append">
                   <div class="input-group-text">
@@ -23,10 +25,12 @@
               </div>
               <div class="input-group mb-3">
                 <input
+                  id="input2"
                   type="password"
                   class="form-control"
                   placeholder="Password"
                   v-model="user.password"
+                  v-on:keyup.enter="loginNow()"
                 />
                 <div class="input-group-append">
                   <div class="input-group-text">
@@ -34,6 +38,7 @@
                   </div>
                 </div>
               </div>
+            </form>
               <div class="row">
                 <div class="col-4">
                   <button
@@ -88,6 +93,10 @@
     },
   
     methods: {
+      nextPlease: function (event) {
+        document.getElementById('input2').focus();
+      },
+
       loginNow() {
         this.$eventBus.$emit("loadingStatus", true);
   

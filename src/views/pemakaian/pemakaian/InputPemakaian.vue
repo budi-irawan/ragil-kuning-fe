@@ -123,6 +123,7 @@
                         <th scope="col" style="width: 12%">Meter Akhir</th>
                         <th scope="col" style="width: 10%">Selisih</th>
                         <th scope="col" style="width: 20%">Jumlah Tarif</th>
+                        <!-- <th scope="col" style="width: 10%">Kondisi</th> -->
                       </tr>
                     </thead>
                     <tbody>
@@ -155,6 +156,9 @@
                                   item.biaya_perawatan
                                 : item.biaya_perawatan
                             }}
+                          </td>
+                          <td>
+                            <!-- <input class="form-control" type="checkbox" name="kondisi" v-model="item.kondisi" checked> -->
                           </td>
                         </tr>
                       </template>
@@ -201,6 +205,7 @@ export default {
   data() {
     return {
       item_pemakaian: [],
+      kondisi: true,
 
       desa_id: "",
       dusun_id: "",

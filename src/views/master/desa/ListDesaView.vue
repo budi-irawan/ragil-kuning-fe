@@ -85,13 +85,7 @@ export default {
   },
 
   mounted() {
-    // console.log('mounted');
-    // let user = localStorage.getItem('token')
-    // console.log(user);
-    // this.token = user
-    // if (user) {
-    //   this.$router.push("/dashboard")
-    // }
+    this.getDesa();
   },
 
   created() {
@@ -101,7 +95,6 @@ export default {
   methods: {
     async getDesa() {
       let t = localStorage.getItem('token')
-      // console.log(t);
       try {
         const data_desa = await axios.get(
           `${ipBackend}/desa/list`, {

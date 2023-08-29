@@ -98,6 +98,11 @@ export default {
     this.getGolonganTarifById();
   },
 
+  mounted() {
+    this.getGolonganTarif();
+    this.getGolonganTarifById();
+  },
+
   methods: {
     formatRupiah(money) {
       return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(money);
