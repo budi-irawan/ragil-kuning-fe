@@ -221,7 +221,7 @@
                               @click="savePembayaran"
                             >
                               <i class="fa fa-save"></i>
-                              Simpan
+                              Print
                             </button>
                           </div>
                         </div>
@@ -417,18 +417,28 @@ export default {
         this.pembayaran_baru.jumlah_bayar = 0;
 
         this.$swal({
-          icon: "success",
-          title: "Data pembayaran berhasil ditambahkan",
-          showConfirmButton: false,
-          timer: 3000,
+          title: "Konfirmasi",
+          text: "Apakah anda akan mencetak struk pembayaran ?",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ya, cetak!",
+        }).then(async (hasil) => {
+          if (hasil.isConfirmed == true) {
+            this.getPelangganById();
+            this.getTagihanByPelangganId();
+            this.$router.push("/pembayaran/tagihan");
+            const kirim_struk = await axios.post("http://localhost:4000/print", {
+              struk_baru,
+            });
+          }
         });
 
         this.getPelangganById();
         this.getTagihanByPelangganId();
         this.$router.push("/pembayaran/tagihan");
-        const kirim_struk = await axios.post("http://localhost:4000/print", {
-          struk_baru,
-        });
+        
       } catch (error) {
         console.log(error);
       }
