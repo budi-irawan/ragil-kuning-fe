@@ -4,36 +4,36 @@
       <i class="nav-icon fas fa-tachometer-alt"></i>
       <p>Dashboard</p>
     </router-link>
-    <router-link v-if="isOwner || isAdmin" to="/master/golongan-tarif" class="btn btn-app">
+    <router-link to="/master/golongan-tarif" class="btn btn-app">
       <font-awesome-icon icon="fa-solid fa-layer-group" class="nav-icon" />
       <p>Golongan Tarif</p>
     </router-link>
-    <router-link v-if="isOwner || isAdmin" to="/master/pelanggan" class="btn btn-app">
+    <router-link to="/master/pelanggan" class="btn btn-app">
       <i class="nav-icon fa fa-users"></i>
       <p>Pelanggan</p>
     </router-link>
-    <router-link v-if="isOwner || isAdmin" to="/master/desa" class="btn btn-app">
+    <router-link to="/master/desa" class="btn btn-app">
       <font-awesome-icon icon="fa-solid fa-map" class="nav-icon" />
       <p>Desa</p>
     </router-link>
-    <router-link v-if="isOwner || isAdmin" to="/master/dusun" class="btn btn-app">
+    <router-link to="/master/dusun" class="btn btn-app">
       <font-awesome-icon icon="fa-solid fa-map-location-dot" class="nav-icon" />
       <p>Dusun</p>
     </router-link>
-    <router-link v-if="isOwner || isAdmin" to="/master/tahun" class="btn btn-app">
+    <router-link to="/master/tahun" class="btn btn-app">
       <font-awesome-icon icon="fa-solid fa-calendar-plus" class="nav-icon" />
       <p>Tahun</p>
     </router-link>
-    <router-link v-if="isOwner || isAdmin" to="/pemakaian" class="btn btn-app">
+    <router-link to="/pemakaian" class="btn btn-app">
       <font-awesome-icon icon="fa-solid fa-faucet-drip" class="nav-icon" />
       <p>Pemakaian</p>
     </router-link>
-    <router-link v-if="isOwner || isKasir" to="/pembayaran/cari-pelanggan" class="btn btn-app">
+    <router-link to="/pembayaran/cari-pelanggan" class="btn btn-app">
       <font-awesome-icon
         icon="fa-solid fa-hand-holding-dollar"
         class="nav-icon"
       />
-      <p>Tagihan</p>
+      <p>Pembayaran</p>
     </router-link>
 
     <router-link to="/pembayaran/laporan-harian" class="btn btn-app">
@@ -49,12 +49,12 @@
       <p>Laporan</p>
     </router-link>
     
-    <router-link v-if="isOwner || isKasir" to="/pembayaran/laporan" class="btn btn-app">
+    <router-link to="/pembayaran/laporan" class="btn btn-app">
       <font-awesome-icon icon="fa-solid fa-book" class="nav-icon"/>
       <p>Settlement</p>
     </router-link>
     
-    <router-link v-if="isOwner" to="/user" class="btn btn-app">
+    <router-link to="/user" class="btn btn-app">
       <font-awesome-icon icon="fa-solid fa-user-gear" class="nav-icon" />
       <p>User</p>
     </router-link>

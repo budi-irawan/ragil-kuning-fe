@@ -19,78 +19,79 @@
               </div>
               <div class="card-body pad table-responsive">
                 <div class="row">
-                  <div class="col-md-12">
-                    <div class="card bg-primary">
-                      <div class="card-body pt-3">
-                        <div class="row">
-                          <div class="col-md-3">
-                            <b>Nama Pelanggan: </b>
-                            <p class="identitas">
-                              {{ item_pelanggan.nama_pelanggan }}
-                            </p>
-                            <b>Alamat: </b>
-                            <p class="identitas">{{ item_pelanggan.alamat }}</p>
-                          </div>
-                          <div class="col-md-3">
-                            <b>No.Telepon: </b>
-                            <p class="identitas">
-                              {{ item_pelanggan.nomor_telepon }}
-                            </p>
-                            <b>Desa: </b>
-                            <p class="identitas">
-                              {{ item_pelanggan.nama_desa }}
-                            </p>
-                          </div>
-                          <div class="col-md-3">
-                            <b>Dusun: </b>
-                            <p class="identitas">
-                              {{ item_pelanggan.nama_dusun }}
-                            </p>
-                            <b>Golongan Tarif: </b>
-                            <p class="identitas">
-                              {{ item_pelanggan.nama_golongan_tarif }}
-                            </p>
-                          </div>
-                          <div class="col-md-3">
-                            <b>Tarif/m2: </b>
-                            <p class="identitas">
-                              {{ item_pelanggan.nominal_tarif }}
-                            </p>
-                            <b>Biaya Perawatan: </b>
-                            <p class="identitas">
-                              {{ item_pelanggan.biaya_perawatan }}
-                            </p>
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="card bg-secondary kartu-identitas">
+                          <div class="card-body pt-3">
+                            <div class="row">
+                              <div class="col-md-3">
+                                <b>Nama Pelanggan: </b>
+                                <p class="identitas">
+                                  {{ item_pelanggan.nama_pelanggan }}
+                                </p>
+                                <b>Alamat: </b>
+                                <p class="identitas">{{ item_pelanggan.alamat }}</p>
+                              </div>
+                              <div class="col-md-3">
+                                <b>No.Telepon: </b>
+                                <p class="identitas">
+                                  {{ item_pelanggan.nomor_telepon }}
+                                </p>
+                                <b>Desa: </b>
+                                <p class="identitas">
+                                  {{ item_pelanggan.nama_desa }}
+                                </p>
+                              </div>
+                              <div class="col-md-3">
+                                <b>Dusun: </b>
+                                <p class="identitas">
+                                  {{ item_pelanggan.nama_dusun }}
+                                </p>
+                                <b>Golongan Tarif: </b>
+                                <p class="identitas">
+                                  {{ item_pelanggan.nama_golongan_tarif }}
+                                </p>
+                              </div>
+                              <div class="col-md-3">
+                                <b>Tarif/m2: </b>
+                                <p class="identitas">
+                                  {{ item_pelanggan.nominal_tarif }}
+                                </p>
+                                <b>Biaya Perawatan: </b>
+                                <p class="identitas">
+                                  {{ item_pelanggan.biaya_perawatan }}
+                                </p>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div class="row">
-                      <div class="col-12">
+                      <div class="col-md-12 isi-tagihan">
                         <div class="table-responsive-md">
-                          <table
-                            class="table table-bordered table-hover table-sm"
-                          >
+                          <table class="table table-bordered table-hover table-sm">
                             <thead>
                               <tr>
                                 <th scope="col" style="width: 3%">No</th>
                                 <th scope="col" style="width: 10%">Bulan</th>
                                 <th scope="col" style="width: 15%">
-                                  Jumlah Pemakaian
+                                  Jml.Pemakaian
                                 </th>
                                 <th scope="col" style="width: 15%">
-                                  Jumlah Tagihan
+                                  Jml.Tagihan
                                 </th>
                                 <th scope="col" style="width: 12%">
-                                  Jumlah Denda
-                                </th>
-                                <th scope="col" style="width: 15%">
-                                  Jumlah Terbayar
+                                  Jml.Denda
                                 </th>
                                 <th scope="col" style="width: 18%">
                                   Sisa Tagihan
                                 </th>
-                                <th scope="col" style="width: 10%">Status</th>
+                                <th scope="col" style="width: 15%">
+                                  Jml.Terbayar
+                                </th>
                               </tr>
                             </thead>
                             <tbody>
@@ -102,36 +103,10 @@
                                 <td>{{ lp.nama_bulan }}</td>
                                 <td>{{ lp.selisih }}</td>
                                 <td>{{ formatRupiah(lp.total_tarif) }}</td>
-                                <td>
-                                  {{ formatRupiah(lp.jumlah_denda_per_bulan) }}
-                                </td>
+                                <td>{{ formatRupiah(lp.jumlah_denda_per_bulan) }}</td>
+                                <td>{{ formatRupiah(lp.sisa_pembayaran_dan_denda) }}</td>
                                 <td>{{ formatRupiah(lp.total_terbayar) }}</td>
-                                <td>
-                                  {{
-                                    formatRupiah(lp.sisa_pembayaran_dan_denda)
-                                  }}
-                                </td>
 
-                                <td v-if="lp.sisa_pembayaran == 0">
-                                  <span class="badge badge-pill badge-success"
-                                    >Lunas</span
-                                  >
-                                </td>
-                                <td
-                                  v-if="
-                                    lp.sisa_pembayaran > 0 &&
-                                    lp.sisa_pembayaran < lp.total_tarif
-                                  "
-                                >
-                                  <span class="badge badge-pill badge-warning"
-                                    >Belum Lunas</span
-                                  >
-                                </td>
-                                <td v-if="lp.sisa_pembayaran == lp.total_tarif">
-                                  <span class="badge badge-pill badge-info"
-                                    >Belum Dibayar</span
-                                  >
-                                </td>
                               </tr>
                             </tbody>
                             <tfoot>
@@ -145,18 +120,60 @@
                                 <th scope="col" style="width: 12%">
                                   {{ formatRupiah(total_denda) }}
                                 </th>
-                                <th scope="col" style="width: 15%">
-                                  {{ formatRupiah(total_total_terbayar) }}
-                                </th>
                                 <th scope="col" style="width: 18%">
                                   {{ formatRupiah(total_tagihan_dengan_denda) }}
                                 </th>
-                                <th scope="col" style="width: 10%"></th>
+                                <th scope="col" style="width: 15%">
+                                  {{ formatRupiah(total_total_terbayar) }}
+                                </th>
                               </tr>
                             </tfoot>
                           </table>
                         </div>
+                      </div>
+                    </div>
+                  </div>
 
+                  <div class="col-md-4">
+                    <div class="card shadow">
+                      <div class="card-header bg-primary head-form-bayar">
+                        <h5>PEMBAYARAN</h5>
+                      </div>
+                      <div class="card-body">
+                        <div class="row" style="font-size: 20px;text-align: center;">TOTAL :</div>
+                        <div class="row" style="font-size: 50px;text-align: center; font-weight: bold;">{{ formatRupiah(total_tagihan_dengan_denda) }}</div>
+                        <form>
+                          <div class="form-group">
+                            <label for="jumlah_bayar">Jumlah Bayar</label>
+                            <input type="text" class="form-control form-input-bayar" id="jumlah_bayar" placeholder="Jumlah Bayar" autofocus v-model="pembayaran_baru.jumlah_bayar">
+                          </div>
+                          <div class="form-group">
+                            <label for="uang_kembalian">Kembali</label>
+                            <input type="text" class="form-control form-input-bayar" id="uang_kembalian" placeholder="Kembali" v-model="susuk">
+                          </div>
+                          <hr>
+                          <div class="form-group">
+                            <button
+                              type="button"
+                              class="btn btn-primary btn-block"
+                              @click="savePembayaran"
+                            >
+                              <i class="fa fa-save"></i>
+                              Bayar
+                            </button>
+                          </div>
+
+                          <div class="form-group">
+                            <button
+                              type="button"
+                              class="btn btn-success btn-block"
+                              @click="cetakStruk"
+                            >
+                              <i class="fa fa-print"></i>
+                              Cetak Struk
+                            </button>
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -166,7 +183,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col">
             <div class="card card-primary card-outline">
               <div class="card-header p-0 pt-1 border-bottom-0">
@@ -232,7 +249,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       </section>
     </div>
@@ -417,28 +434,27 @@ export default {
         this.pembayaran_baru.jumlah_bayar = 0;
 
         this.$swal({
-          title: "Konfirmasi",
-          text: "Apakah anda akan mencetak struk pembayaran ?",
-          icon: "question",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Ya, cetak!",
-        }).then(async (hasil) => {
-          if (hasil.isConfirmed == true) {
-            this.getPelangganById();
-            this.getTagihanByPelangganId();
-            this.$router.push("/pembayaran/tagihan");
-            const kirim_struk = await axios.post("http://localhost:4000/print", {
-              struk_baru,
-            });
-          }
+          icon: "success",
+          title: "Sukses",
+          text: "Berhasil melakukan pembayaran",
+          showConfirmButton: false,
+          timer: 3000,
         });
 
         this.getPelangganById();
         this.getTagihanByPelangganId();
-        this.$router.push("/pembayaran/tagihan");
+        this.$router.push("/pembayaran/cari-pelanggan");
         
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async cetakStruk() {
+      try {
+        const kirim_struk = await axios.post("http://localhost:4000/print", {
+          struk_baru,
+         });
       } catch (error) {
         console.log(error);
       }
@@ -459,5 +475,24 @@ p.identitas {
   font-size: 12px;
   font-weight: 300;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+div.kartu-identitas {
+  padding-bottom: 2px;
+  font-size: 12px;
+}
+
+div.isi-tagihan {
+  font-size: 12px;
+}
+
+div.head-form-bayar {
+  text-align: center;
+}
+
+input.form-input-bayar {
+  height: 80px;
+  font-size: 50px;
+  font-weight: bold;
 }
 </style>

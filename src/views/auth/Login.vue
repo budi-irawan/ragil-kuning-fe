@@ -114,7 +114,11 @@
               localStorage.setItem("token", res.data.token);
               this.$router.push("/dashboard")
             }
-          });
+          })
+          .catch(error => {
+            console.log("INI ERRORNYA");
+            console.log(error);
+          })
       },
     },
   };

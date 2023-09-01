@@ -6,5 +6,8 @@ module.exports = defineConfig({
       entry: 'src/main.js',
       title: 'RAGIL KUNING',
     },
+  },
+  devServer: {
+    proxy: 'https://192.168.99.100:4000'
   }
 })
