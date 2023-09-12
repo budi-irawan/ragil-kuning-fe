@@ -5,9 +5,9 @@
         <router-view />
         <section class="content">
           <div class="container-fluid pt-3">
-            <div class="row mt-1 mb-2">
+            <!-- <div class="row mt-1 mb-2">
               <app-top-bar />
-            </div>
+            </div> -->
             <div class="row pt-2">
               <div class="col-lg-4 col-6">
                 <div class="small-box bg-info">

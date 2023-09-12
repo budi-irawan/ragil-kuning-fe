@@ -5,9 +5,9 @@
       <router-view />
       <section class="content">
         <div class="container-fluid pt-3">
-        <div class="row mt-1 mb-3">
-          <app-top-bar />
-        </div>
+          <!-- <div class="row mt-1 mb-3">
+            <app-top-bar />
+          </div> -->
         <div class="row mt-3 mb-4">
           <div class="col">
             <div class="card card-outline card-primary">
@@ -28,6 +28,7 @@
                         class="form-control pencarian"
                         placeholder="Cari pelanggan "
                         aria-label="Search"
+                        id="input-pencarian"
                         v-on:keyup.enter="cariPelanggan"
                       />
                     </div>
@@ -94,6 +95,11 @@
 <script>
 import { ipBackend } from '@/ipBackend';
 import axios from "axios";
+
+window.onload = function() {
+  document.getElementById("input-pencarian").focus();
+};
+
 export default {
   name: "FormPencarianPembayaran",
   data() {

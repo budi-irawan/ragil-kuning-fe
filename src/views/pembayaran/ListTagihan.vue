@@ -5,9 +5,9 @@
       <router-view />
       <section class="content">
         <div class="container-fluid pt-3">
-        <div class="row mt-1 mb-3">
+        <!-- <div class="row mt-1 mb-3">
           <app-top-bar />
-        </div>
+        </div> -->
         <div class="row mt-3 mb-4">
           <div class="col">
             <div class="card card-outline card-primary">

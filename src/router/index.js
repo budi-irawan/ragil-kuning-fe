@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LoginView from '../views/auth/Login.vue'
 import DashboardView from '../views/DashboardView.vue'
+import axios from 'axios'
+import { ipBackend } from '@/ipBackend'
 
 Vue.use(VueRouter)
 
@@ -233,6 +235,25 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach(async function(to, from, next){
+  if (!to.meta.requiresAuth) {
+    next()
+  } else {
+    let cek_token_user = await axios.get(ipBackend + "user/cek-authentification", {
+      headers: {
+        token: localStorage.getItem("token")
+      }
+    })
+    if (cek_token_user.data.message == "anda belum login") {
+      next({
+        path: "/"
+      })
+    } else {
+      next({})
+    }
+  }
 })
 
 export default router
