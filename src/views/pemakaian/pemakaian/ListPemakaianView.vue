@@ -5,14 +5,18 @@
       <router-view />
       <section class="content">
         <div class="container-fluid pt-3">
-        <div class="row mt-1 mb-3">
+        <!-- <div class="row mt-1 mb-3">
           <app-top-bar />
-        </div>
+        </div> -->
         <div class="row">
           <div class="col">
-            <router-link class="btn btn-primary" to="/pemakaian/input-pemakaian">
+            <router-link class="btn btn-primary mr-3" to="/pemakaian/input-pemakaian">
               <i class="fas fa-solid fa-plus-circle"></i>
               Input Data Pemakaian
+            </router-link>
+            <router-link class="btn btn-primary" to="/pemakaian/cetak-formulir">
+              <i class="fas fa-solid fa-print"></i>
+              Cetak Formulir Pencatatan
             </router-link>
           </div>
         </div>
@@ -283,4 +287,5 @@ export default {
 .btn-sm {
   margin: 2px;
 }
+
 </style>

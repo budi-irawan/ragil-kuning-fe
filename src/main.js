@@ -32,7 +32,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faHandHoldingDroplet, faHandHoldingDollar, faFaucetDrip, faLayerGroup, faMapLocationDot, faUserGear, faCircleUser, faMap, faRightToBracket, faCalendarPlus, faPaperPlane, faMoneyCheckDollar, faPrint, faNewspaper, faBook, faFileExcel, faDownload, faFileLines, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
-library.add(faHandHoldingDroplet, faHandHoldingDollar, faFaucetDrip, faCircleXmark, faTrashCan, faLayerGroup, faMapLocationDot, faUserGear, faCircleUser, faMap, faRightToBracket, faCalendarPlus, faPaperPlane, faMoneyCheckDollar, faPrint, faNewspaper, faBook, faFileExcel, faDownload, faFileLines, faFileInvoice );
+library.add(faHandHoldingDroplet, faHandHoldingDollar, faFaucetDrip, faCircleXmark, faTrashCan, faLayerGroup, faMapLocationDot, faUserGear, faCircleUser, faMap, faRightToBracket, faCalendarPlus, faPaperPlane, faMoneyCheckDollar, faPrint, faNewspaper, faBook, faFileExcel, faDownload, faFileLines, faFileInvoice);
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('AppNavBar', AppNavBar)
 Vue.component('AppTopBar', AppTopBar)
@@ -69,8 +69,8 @@ jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
   }
 });
 
-new Vue({
+const vm = new Vue({
+  render: h => h(App),
   router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+})
+  .$mount('#app')
