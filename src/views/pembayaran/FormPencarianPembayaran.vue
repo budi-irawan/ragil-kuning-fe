@@ -28,6 +28,7 @@
                         class="form-control pencarian"
                         placeholder="Cari pelanggan "
                         aria-label="Search"
+                        id="input-pencarian"
                         v-on:keyup.enter="cariPelanggan"
                       />
                     </div>
@@ -94,6 +95,11 @@
 <script>
 import { ipBackend } from '@/ipBackend';
 import axios from "axios";
+
+window.onload = function() {
+  document.getElementById("input-pencarian").focus();
+};
+
 export default {
   name: "FormPencarianPembayaran",
   data() {

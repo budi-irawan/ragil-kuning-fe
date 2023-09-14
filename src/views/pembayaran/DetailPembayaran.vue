@@ -145,11 +145,11 @@
                         <form>
                           <div class="form-group">
                             <label for="jumlah_bayar">Jumlah Bayar</label>
-                            <input type="text" class="form-control form-input-bayar" id="jumlah_bayar" placeholder="Jumlah Bayar" autofocus v-model="pembayaran_baru.jumlah_bayar">
+                            <input type="text" class="form-control form-input-bayar" id="jumlah_bayar" autofocus v-model="pembayaran_baru.jumlah_bayar">
                           </div>
                           <div class="form-group">
                             <label for="uang_kembalian">Kembali</label>
-                            <input type="text" class="form-control form-input-bayar" id="uang_kembalian" placeholder="Kembali" v-model="susuk">
+                            <input type="text" class="form-control form-input-bayar" id="uang_kembalian" v-model="susuk" disabled>
                           </div>
                           <hr>
                           <div class="form-group">
@@ -262,6 +262,10 @@
 import { ipBackend } from '@/ipBackend';
 import axios from "axios";
 import moment from "moment";
+
+window.onload = function() {
+  document.getElementById("jumlah_bayar").focus();
+};
 
 export default {
   name: "DetailPembayaran",
@@ -491,8 +495,8 @@ div.head-form-bayar {
 }
 
 input.form-input-bayar {
-  height: 80px;
-  font-size: 50px;
+  height: 50px;
+  font-size: 30px;
   font-weight: bold;
 }
 </style>
