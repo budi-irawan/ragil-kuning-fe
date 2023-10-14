@@ -118,6 +118,13 @@
           .catch(error => {
             console.log("INI ERRORNYA");
             console.log(error);
+            if (error.name == "AxiosError") {
+              this.$VueIziToast.error({
+                title: "Error",
+                message: "Terjadi kesalahan pada server",
+                position: "topCenter"
+              });
+            }
           })
       },
     },

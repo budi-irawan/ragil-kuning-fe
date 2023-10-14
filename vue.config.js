@@ -1,16 +1,10 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-  publicPath: process.env.NODE_ENV === 'production'
-  ? '/dist/'
-  : '/',
   transpileDependencies: true,
   pages: {
     index: {
       entry: 'src/main.js',
-      title: 'RAGIL KUNING',
+      title: 'RAGIL KUNING V1',
     },
-  },
-  devServer: {
-    proxy: 'https://192.168.99.100:4000'
   },
 })

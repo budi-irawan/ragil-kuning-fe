@@ -145,7 +145,7 @@
                         <form>
                           <div class="form-group">
                             <label for="jumlah_bayar">Jumlah Bayar</label>
-                            <input type="text" class="form-control form-input-bayar" id="jumlah_bayar" autofocus v-model="pembayaran_baru.jumlah_bayar">
+                            <input type="text" class="form-control form-input-bayar" id="jumlah_bayar" autofocus v-model="pembayaran_baru.jumlah_bayar" v-on:keyup.enter="savePembayaran">
                           </div>
                           <div class="form-group">
                             <label for="uang_kembalian">Kembali</label>
@@ -279,7 +279,6 @@ export default {
 
       pembayaran_baru: {
         tanggal_bayar: moment().format("YYYY-MM-DD HH:mm:ss"),
-        jumlah_bayar: 0,
         pelanggan_id: "",
         nominal_denda: 0,
         tanggal_jatuh_tempo: 0,

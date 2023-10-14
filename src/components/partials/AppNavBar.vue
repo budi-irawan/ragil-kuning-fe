@@ -20,18 +20,18 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
-          class="nav-link dropdown-toggle"
+          class="nav-link dropdown-toggle" v-if="isOwner || isAdmin"
           >Master</a
         >
         <ul
           aria-labelledby="dropdownSubMenu1"
           class="dropdown-menu border-0 shadow"
         >
-          <li><router-link to="/master/golongan-tarif" class="dropdown-item">Golongan Tarif</router-link></li>
-          <li><router-link to="/master/pelanggan" class="dropdown-item">Pelanggan</router-link></li>
-          <li><router-link to="/master/desa" class="dropdown-item">Desa</router-link></li>
-          <li><router-link to="/master/dusun" class="dropdown-item">Dusun</router-link></li>
-          <li><router-link to="/master/tahun" class="dropdown-item">Tahun</router-link></li>
+          <li><router-link to="/master/golongan-tarif" v-if="isOwner || isAdmin" class="dropdown-item">Golongan Tarif</router-link></li>
+          <li><router-link to="/master/pelanggan" v-if="isOwner || isAdmin" class="dropdown-item">Pelanggan</router-link></li>
+          <li><router-link to="/master/desa" v-if="isOwner || isAdmin" class="dropdown-item">Desa</router-link></li>
+          <li><router-link to="/master/dusun" v-if="isOwner || isAdmin" class="dropdown-item">Dusun</router-link></li>
+          <li><router-link to="/master/tahun" v-if="isOwner || isAdmin" class="dropdown-item">Tahun</router-link></li>
         </ul>
       </li>
 
@@ -49,8 +49,8 @@
           aria-labelledby="dropdownSubMenu1"
           class="dropdown-menu border-0 shadow"
         >
-          <li><router-link to="/pembayaran/cari-pelanggan" class="dropdown-item">Pembayaran</router-link></li>
-          <li><router-link to="/pemakaian" class="dropdown-item">Pemakaian</router-link></li>
+          <li><router-link to="/pembayaran/cari-pelanggan" v-if="isOwner || isKasir" class="dropdown-item">Pembayaran</router-link></li>
+          <li><router-link to="/pemakaian" v-if="isOwner || isAdmin" class="dropdown-item">Pemakaian</router-link></li>
         </ul>
       </li>
 
@@ -79,7 +79,7 @@
       </li>
 
       <li class="nav-item">
-        <router-link to="/user" class="nav-link">User</router-link>
+        <router-link to="/user" v-if="isOwner" class="nav-link">User</router-link>
       </li>
     </ul>
 
